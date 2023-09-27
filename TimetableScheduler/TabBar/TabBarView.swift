@@ -13,13 +13,14 @@ struct TabBarView: View {
             timetableView
             teachersView
             schedulesView
+            disciplinesView
         }
     }
     
     private var timetableView: some View {
         TimetableView()
             .tabItem {
-                Label("Timetable", systemImage: "clock.fill")
+                Label("Timetable", systemImage: "house")
             }
     }
     
@@ -33,7 +34,14 @@ struct TabBarView: View {
     private var schedulesView: some View {
         SchedulesView()
             .tabItem {
-                Label("Schedule", systemImage: "book.closed.fill")
+                Label("Schedule", systemImage: "clock.fill")
+            }
+    }
+    
+    private var disciplinesView: some View {
+        DisciplinesView()
+            .tabItem {
+                Label("Disciplines", systemImage: "book.closed.fill")
             }
     }
 }
