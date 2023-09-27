@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		853B44F32AC4DB3100CF0B13 /* TimetableSchedulerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */; };
-		853B44F52AC4DB3100CF0B13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B44F42AC4DB3100CF0B13 /* ContentView.swift */; };
 		853B44F72AC4DB3300CF0B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853B44F62AC4DB3300CF0B13 /* Assets.xcassets */; };
 		853B44FA2AC4DB3300CF0B13 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853B44F92AC4DB3300CF0B13 /* Preview Assets.xcassets */; };
+		853B45022AC4E1D300CF0B13 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45012AC4E1D300CF0B13 /* TabBarView.swift */; };
+		853B45072AC4E54800CF0B13 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45062AC4E54800CF0B13 /* TimetableView.swift */; };
+		853B45092AC4E56200CF0B13 /* TeachersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45082AC4E56200CF0B13 /* TeachersView.swift */; };
+		853B450B2AC4E56B00CF0B13 /* SchedulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B450A2AC4E56B00CF0B13 /* SchedulesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		853B44EF2AC4DB3100CF0B13 /* TimetableScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimetableScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSchedulerApp.swift; sourceTree = "<group>"; };
-		853B44F42AC4DB3100CF0B13 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		853B44F62AC4DB3300CF0B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		853B44F92AC4DB3300CF0B13 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		853B45012AC4E1D300CF0B13 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		853B45062AC4E54800CF0B13 /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
+		853B45082AC4E56200CF0B13 /* TeachersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersView.swift; sourceTree = "<group>"; };
+		853B450A2AC4E56B00CF0B13 /* SchedulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,11 @@
 		853B44F12AC4DB3100CF0B13 /* TimetableScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				853B45052AC4E52700CF0B13 /* Schedules */,
+				853B45042AC4E52200CF0B13 /* Teachers */,
+				853B45032AC4E51C00CF0B13 /* Timetable */,
+				853B45002AC4E1C100CF0B13 /* TabBar */,
 				853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */,
-				853B44F42AC4DB3100CF0B13 /* ContentView.swift */,
 				853B44F62AC4DB3300CF0B13 /* Assets.xcassets */,
 				853B44F82AC4DB3300CF0B13 /* Preview Content */,
 			);
@@ -65,6 +74,38 @@
 				853B44F92AC4DB3300CF0B13 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		853B45002AC4E1C100CF0B13 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				853B45012AC4E1D300CF0B13 /* TabBarView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		853B45032AC4E51C00CF0B13 /* Timetable */ = {
+			isa = PBXGroup;
+			children = (
+				853B45062AC4E54800CF0B13 /* TimetableView.swift */,
+			);
+			path = Timetable;
+			sourceTree = "<group>";
+		};
+		853B45042AC4E52200CF0B13 /* Teachers */ = {
+			isa = PBXGroup;
+			children = (
+				853B45082AC4E56200CF0B13 /* TeachersView.swift */,
+			);
+			path = Teachers;
+			sourceTree = "<group>";
+		};
+		853B45052AC4E52700CF0B13 /* Schedules */ = {
+			isa = PBXGroup;
+			children = (
+				853B450A2AC4E56B00CF0B13 /* SchedulesView.swift */,
+			);
+			path = Schedules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853B44F52AC4DB3100CF0B13 /* ContentView.swift in Sources */,
+				853B45092AC4E56200CF0B13 /* TeachersView.swift in Sources */,
+				853B45072AC4E54800CF0B13 /* TimetableView.swift in Sources */,
+				853B45022AC4E1D300CF0B13 /* TabBarView.swift in Sources */,
 				853B44F32AC4DB3100CF0B13 /* TimetableSchedulerApp.swift in Sources */,
+				853B450B2AC4E56B00CF0B13 /* SchedulesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

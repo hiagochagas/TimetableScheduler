@@ -2,7 +2,7 @@
 //  TimetableSchedulerApp.swift
 //  TimetableScheduler
 //
-//  Created by PremierSoft on 27/09/23.
+//  Created by Hiago Chagas on 27/09/23.
 //
 
 import SwiftUI
@@ -11,7 +11,7 @@ import SwiftUI
 struct TimetableSchedulerApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabBarView()
         }
     }
 }
