@@ -40,10 +40,14 @@ struct TabBarView: View {
     }
     
     private var schedulesView: some View {
-        SchedulesView()
-            .tabItem {
-                Label("Schedule", systemImage: "clock.fill")
-            }
+        SchedulesView(
+            viewModel: SchedulesViewModel(
+                schedulesRepository: SchedulesRepository()
+            )
+        )
+        .tabItem {
+            Label("Schedule", systemImage: "clock.fill")
+        }
     }
     
     private var disciplinesView: some View {

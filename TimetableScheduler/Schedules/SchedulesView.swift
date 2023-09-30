@@ -8,13 +8,31 @@
 import SwiftUI
 
 struct SchedulesView: View {
-    var body: some View {
-        Text("Schedules")
+    private let viewModel: SchedulesViewModeling
+    
+    init(viewModel: SchedulesViewModeling) {
+        self.viewModel = viewModel
     }
-}
-
-struct SchedulesView_Previews: PreviewProvider {
-    static var previews: some View {
-        SchedulesView()
+    
+    var body: some View {
+        VStack {
+            topContent
+            contentView
+        }
+    }
+    
+    private var topContent: some View {
+        HeaderView()
+    }
+    
+    private var contentView: some View {
+        List {
+            ForEach(viewModel.getAllSchedules()) { cell in
+                let schedule = cell.object
+                ScheduleDetailCell(startTime: schedule.startTime, endTime: schedule.endTime)
+            }
+            .listRowSeparator(.hidden)
+        }
+        .scrollContentBackground(.hidden)
     }
 }
