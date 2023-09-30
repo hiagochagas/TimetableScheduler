@@ -12,10 +12,11 @@
 		853B44FA2AC4DB3300CF0B13 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853B44F92AC4DB3300CF0B13 /* Preview Assets.xcassets */; };
 		853B45022AC4E1D300CF0B13 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45012AC4E1D300CF0B13 /* TabBarView.swift */; };
 		853B45072AC4E54800CF0B13 /* TimetableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45062AC4E54800CF0B13 /* TimetableView.swift */; };
-		853B45092AC4E56200CF0B13 /* TeachersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45082AC4E56200CF0B13 /* TeachersView.swift */; };
+		853B45092AC4E56200CF0B13 /* ProfessorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45082AC4E56200CF0B13 /* ProfessorsView.swift */; };
 		853B450B2AC4E56B00CF0B13 /* SchedulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B450A2AC4E56B00CF0B13 /* SchedulesView.swift */; };
 		853B450E2AC4EE3E00CF0B13 /* DisciplinesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B450D2AC4EE3E00CF0B13 /* DisciplinesView.swift */; };
 		853B45112AC4F01200CF0B13 /* Weekdays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B45102AC4F01200CF0B13 /* Weekdays.swift */; };
+		855BDC7D2AC85086002181C7 /* ProfessorDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC7C2AC85086002181C7 /* ProfessorDetailCell.swift */; };
 		85A578522AC6F284007E549A /* TimetableDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578512AC6F284007E549A /* TimetableDetailCell.swift */; };
 		85A578542AC6FA3D007E549A /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578532AC6FA3D007E549A /* TimetableViewModel.swift */; };
 		85A578562AC6FC4F007E549A /* TimetableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578552AC6FC4F007E549A /* TimetableState.swift */; };
@@ -27,6 +28,9 @@
 		85A578632AC71001007E549A /* TimetableRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578622AC71001007E549A /* TimetableRepository.swift */; };
 		85A578662AC7672C007E549A /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578652AC7672C007E549A /* Cell.swift */; };
 		85A578692AC849EE007E549A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578682AC849EE007E549A /* HeaderView.swift */; };
+		85A5786D2AC84BD7007E549A /* ProfessorsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A5786C2AC84BD7007E549A /* ProfessorsState.swift */; };
+		85A5786F2AC84D65007E549A /* ProfessorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A5786E2AC84D65007E549A /* ProfessorsViewModel.swift */; };
+		85A578712AC84EC5007E549A /* ProfessorsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578702AC84EC5007E549A /* ProfessorsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,10 +40,11 @@
 		853B44F92AC4DB3300CF0B13 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		853B45012AC4E1D300CF0B13 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		853B45062AC4E54800CF0B13 /* TimetableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableView.swift; sourceTree = "<group>"; };
-		853B45082AC4E56200CF0B13 /* TeachersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersView.swift; sourceTree = "<group>"; };
+		853B45082AC4E56200CF0B13 /* ProfessorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorsView.swift; sourceTree = "<group>"; };
 		853B450A2AC4E56B00CF0B13 /* SchedulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesView.swift; sourceTree = "<group>"; };
 		853B450D2AC4EE3E00CF0B13 /* DisciplinesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesView.swift; sourceTree = "<group>"; };
 		853B45102AC4F01200CF0B13 /* Weekdays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekdays.swift; sourceTree = "<group>"; };
+		855BDC7C2AC85086002181C7 /* ProfessorDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorDetailCell.swift; sourceTree = "<group>"; };
 		85A578512AC6F284007E549A /* TimetableDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDetailCell.swift; sourceTree = "<group>"; };
 		85A578532AC6FA3D007E549A /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		85A578552AC6FC4F007E549A /* TimetableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableState.swift; sourceTree = "<group>"; };
@@ -51,6 +56,9 @@
 		85A578622AC71001007E549A /* TimetableRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableRepository.swift; sourceTree = "<group>"; };
 		85A578652AC7672C007E549A /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		85A578682AC849EE007E549A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		85A5786C2AC84BD7007E549A /* ProfessorsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorsState.swift; sourceTree = "<group>"; };
+		85A5786E2AC84D65007E549A /* ProfessorsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorsViewModel.swift; sourceTree = "<group>"; };
+		85A578702AC84EC5007E549A /* ProfessorsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +96,7 @@
 				853B450F2AC4F00300CF0B13 /* Model */,
 				853B450C2AC4EE3200CF0B13 /* Disciplines */,
 				853B45052AC4E52700CF0B13 /* Schedules */,
-				853B45042AC4E52200CF0B13 /* Teachers */,
+				853B45042AC4E52200CF0B13 /* Professors */,
 				853B45032AC4E51C00CF0B13 /* Timetable */,
 				853B45002AC4E1C100CF0B13 /* TabBar */,
 				853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */,
@@ -125,12 +133,15 @@
 			path = Timetable;
 			sourceTree = "<group>";
 		};
-		853B45042AC4E52200CF0B13 /* Teachers */ = {
+		853B45042AC4E52200CF0B13 /* Professors */ = {
 			isa = PBXGroup;
 			children = (
-				853B45082AC4E56200CF0B13 /* TeachersView.swift */,
+				853B45082AC4E56200CF0B13 /* ProfessorsView.swift */,
+				85A5786C2AC84BD7007E549A /* ProfessorsState.swift */,
+				85A5786E2AC84D65007E549A /* ProfessorsViewModel.swift */,
+				855BDC7C2AC85086002181C7 /* ProfessorDetailCell.swift */,
 			);
-			path = Teachers;
+			path = Professors;
 			sourceTree = "<group>";
 		};
 		853B45052AC4E52700CF0B13 /* Schedules */ = {
@@ -166,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				85A578622AC71001007E549A /* TimetableRepository.swift */,
+				85A578702AC84EC5007E549A /* ProfessorsRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -249,15 +261,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853B45092AC4E56200CF0B13 /* TeachersView.swift in Sources */,
+				853B45092AC4E56200CF0B13 /* ProfessorsView.swift in Sources */,
 				85A578692AC849EE007E549A /* HeaderView.swift in Sources */,
 				85A578542AC6FA3D007E549A /* TimetableViewModel.swift in Sources */,
 				85A5785E2AC70C0A007E549A /* Room.swift in Sources */,
 				85A578602AC70CB9007E549A /* Schedule.swift in Sources */,
 				853B45072AC4E54800CF0B13 /* TimetableView.swift in Sources */,
+				85A5786D2AC84BD7007E549A /* ProfessorsState.swift in Sources */,
 				85A578662AC7672C007E549A /* Cell.swift in Sources */,
 				85A578562AC6FC4F007E549A /* TimetableState.swift in Sources */,
 				853B450E2AC4EE3E00CF0B13 /* DisciplinesView.swift in Sources */,
+				85A5786F2AC84D65007E549A /* ProfessorsViewModel.swift in Sources */,
+				85A578712AC84EC5007E549A /* ProfessorsRepository.swift in Sources */,
 				853B45022AC4E1D300CF0B13 /* TabBarView.swift in Sources */,
 				85A578582AC6FCEB007E549A /* Timetable.swift in Sources */,
 				853B44F32AC4DB3100CF0B13 /* TimetableSchedulerApp.swift in Sources */,
@@ -266,6 +281,7 @@
 				853B450B2AC4E56B00CF0B13 /* SchedulesView.swift in Sources */,
 				85A578522AC6F284007E549A /* TimetableDetailCell.swift in Sources */,
 				853B45112AC4F01200CF0B13 /* Weekdays.swift in Sources */,
+				855BDC7D2AC85086002181C7 /* ProfessorDetailCell.swift in Sources */,
 				85A5785A2AC70B46007E549A /* Discipline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

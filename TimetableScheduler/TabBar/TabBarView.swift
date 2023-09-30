@@ -11,7 +11,7 @@ struct TabBarView: View {
     var body: some View {
         TabView {
             timetableView
-            teachersView
+            professorsView
             schedulesView
             disciplinesView
         }
@@ -23,16 +23,20 @@ struct TabBarView: View {
                 timetableRepository: TimetableRepository()
             )
         )
-            .tabItem {
-                Label("Timetable", systemImage: "house")
-            }
+        .tabItem {
+            Label("Timetable", systemImage: "house")
+        }
     }
     
-    private var teachersView: some View {
-        TeachersView()
-            .tabItem {
-                Label("Teachers", systemImage: "graduationcap.fill")
-            }
+    private var professorsView: some View {
+        ProfessorsView(
+            viewModel: ProfessorsViewModel(
+                professorsRepository: ProfessorsRepository()
+            )
+        )
+        .tabItem {
+            Label("Professors", systemImage: "graduationcap.fill")
+        }
     }
     
     private var schedulesView: some View {
