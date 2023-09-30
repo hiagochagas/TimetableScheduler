@@ -51,9 +51,13 @@ struct TabBarView: View {
     }
     
     private var disciplinesView: some View {
-        DisciplinesView()
-            .tabItem {
-                Label("Disciplines", systemImage: "book.closed.fill")
-            }
+        DisciplinesView(
+            viewModel: DisciplinesViewModel(
+                disciplinesRepository: DisciplinesRepository()
+            )
+        )
+        .tabItem {
+            Label("Disciplines", systemImage: "book.closed.fill")
+        }
     }
 }

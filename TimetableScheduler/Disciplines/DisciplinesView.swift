@@ -8,13 +8,31 @@
 import SwiftUI
 
 struct DisciplinesView: View {
-    var body: some View {
-        Text("Disciplines")
+    private let viewModel: DisciplinesViewModeling
+    
+    init(viewModel: DisciplinesViewModeling) {
+        self.viewModel = viewModel
     }
-}
-
-struct DisciplinesView_Previews: PreviewProvider {
-    static var previews: some View {
-        DisciplinesView()
+    
+    var body: some View {
+        VStack {
+            topContent
+            contentView
+        }
+    }
+    
+    private var topContent: some View {
+        HeaderView()
+    }
+    
+    private var contentView: some View {
+        List {
+            ForEach(viewModel.getAllDisciplines()) { cell in
+                let discipline = cell.object
+                DisciplineDetailCell(disciplineName: discipline.name)
+            }
+            .listRowSeparator(.hidden)
+        }
+        .scrollContentBackground(.hidden)
     }
 }
