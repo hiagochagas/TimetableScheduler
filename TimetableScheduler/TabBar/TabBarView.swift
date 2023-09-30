@@ -18,7 +18,11 @@ struct TabBarView: View {
     }
     
     private var timetableView: some View {
-        TimetableView()
+        TimetableView(
+            viewModel: TimetableViewModel(
+                timetableRepository: TimetableRepository()
+            )
+        )
             .tabItem {
                 Label("Timetable", systemImage: "house")
             }
@@ -43,11 +47,5 @@ struct TabBarView: View {
             .tabItem {
                 Label("Disciplines", systemImage: "book.closed.fill")
             }
-    }
-}
-
-struct TabBarView_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBarView()
     }
 }
