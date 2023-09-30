@@ -8,14 +8,40 @@
 import SwiftUI
 
 struct TabBarView: View {
-    var body: some View {
-        TabView {
-            timetableView
-            professorsView
-            schedulesView
-            disciplinesView
-        }
+    @State private var tabSelected: Tab = .timetable
+        
+    init() {
+        UITabBar.appearance().isHidden = true
     }
+    
+    var body: some View {
+            ZStack {
+                VStack {
+                    TabView(selection: $tabSelected) {
+                        ForEach(Tab.allCases, id: \.rawValue) { tab in
+                            HStack {
+                                Image(systemName: tab.rawValue)
+                                switch tab {
+                                case .timetable:
+                                    timetableView
+                                case .professors:
+                                    professorsView
+                                case .schedule:
+                                    schedulesView
+                                case .disciplines:
+                                    disciplinesView
+                                }
+                            }
+                            .tag(tab)
+                        }
+                    }
+                }
+                VStack {
+                    Spacer()
+                    CustomTabBar(selectedTab: $tabSelected)
+                }
+            }
+        }
     
     private var timetableView: some View {
         TimetableView(
@@ -23,9 +49,6 @@ struct TabBarView: View {
                 timetableRepository: TimetableRepository()
             )
         )
-        .tabItem {
-            Label("Timetable", systemImage: "house")
-        }
     }
     
     private var professorsView: some View {
@@ -34,9 +57,6 @@ struct TabBarView: View {
                 professorsRepository: ProfessorsRepository()
             )
         )
-        .tabItem {
-            Label("Professors", systemImage: "graduationcap.fill")
-        }
     }
     
     private var schedulesView: some View {
@@ -45,9 +65,6 @@ struct TabBarView: View {
                 schedulesRepository: SchedulesRepository()
             )
         )
-        .tabItem {
-            Label("Schedule", systemImage: "clock.fill")
-        }
     }
     
     private var disciplinesView: some View {
@@ -56,8 +73,5 @@ struct TabBarView: View {
                 disciplinesRepository: DisciplinesRepository()
             )
         )
-        .tabItem {
-            Label("Disciplines", systemImage: "book.closed.fill")
-        }
     }
 }
