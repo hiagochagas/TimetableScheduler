@@ -7,12 +7,14 @@
 
 import Foundation
 
-public enum Weekdays: String, CaseIterable {
+public enum Weekdays: Identifiable, CaseIterable {
     case monday
     case tuesday
     case wednesday
     case thursday
     case friday
+    
+    public var id: Self { self }
     
     var sectionName: String {
         switch self {

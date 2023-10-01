@@ -30,7 +30,7 @@ extension TimetableView {
     
     private var timetableView: some View {
         List {
-            ForEach(Weekdays.allCases, id: \.rawValue) { weekday in
+            ForEach(Weekdays.allCases) { weekday in
                 Section(header: Text(weekday.sectionName)) {
                     section(for: weekday)
                 }

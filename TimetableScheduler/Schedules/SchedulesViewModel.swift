@@ -7,12 +7,8 @@
 
 import Foundation
 
-protocol SchedulesViewModeling {
-    func getAllSchedules() -> [Cell<Schedule>]
-}
-
-final class SchedulesViewModel {
-    private var state: SchedulesState = .init()
+final class SchedulesViewModel: ObservableObject {
+    @Published var state: SchedulesState = .init()
     private let schedulesRepository: SchedulesRepositing
     
     init(schedulesRepository: SchedulesRepositing) {
@@ -30,10 +26,25 @@ extension SchedulesViewModel {
     }
 }
 
-extension SchedulesViewModel: SchedulesViewModeling {
-    func getAllSchedules() -> [Cell<Schedule>] {
-        return state.schedules
+extension SchedulesViewModel {
+    func getSchedules(for weekday: Weekdays) -> [Cell<Schedule>]{
+        state.schedules.filter { $0.object.dayOfTheWeek == weekday }
+    }
+    
+    func saveSchedule(_ schedule: Cell<Schedule>) {
+        guard let index = state.schedules.firstIndex(where: { $0.id == schedule.id }) else {
+            createSchedule(schedule)
+            return
+        }
+        deleteSchedule(schedule)
+        state.schedules.insert(schedule, at: index)
+    }
+    
+    private func createSchedule(_ schedule: Cell<Schedule>) {
+        state.schedules.insert(schedule, at: 0)
+    }
+    
+    func deleteSchedule(_ schedule: Cell<Schedule>) {
+        state.schedules = state.schedules.filter { $0.id != schedule.id }
     }
 }
-
-
