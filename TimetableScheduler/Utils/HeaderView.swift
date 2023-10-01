@@ -44,8 +44,10 @@ struct HeaderView: View {
             HStack {
                 greetingText
                 Spacer()
-                actionButton
-                    .padding(.trailing, 8)
+                if buttonType != .refresh {
+                    actionButton
+                        .padding(.trailing, 8)
+                }
             }
         }
         .padding(.horizontal, 20)
