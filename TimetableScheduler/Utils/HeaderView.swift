@@ -21,7 +21,7 @@ struct HeaderView: View {
             case .refresh:
                 "arrow.clockwise"
             case .create:
-                "pencil"
+                "plus"
             }
         }
     }

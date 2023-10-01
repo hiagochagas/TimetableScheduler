@@ -91,7 +91,7 @@ struct ScheduleDetailSheet: View {
                 ForEach(Weekdays.allCases) {
                     Text($0.sectionName).tag($0)
                 }
-            }
+            }.tint(.green)
         }
     }
     
