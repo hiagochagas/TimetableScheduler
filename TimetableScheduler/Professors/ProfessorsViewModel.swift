@@ -7,12 +7,8 @@
 
 import Foundation
 
-protocol ProfessorsViewModeling {
-    func getAllProfessors() -> [Cell<Professor>]
-}
-
-final class ProfessorsViewModel {
-    private var state: ProfessorsState = .init()
+final class ProfessorsViewModel: ObservableObject {
+    @Published var state: ProfessorsState = .init()
     private let professorsRepository: ProfessorsRepositing
     
     init(professorsRepository: ProfessorsRepositing) {
@@ -29,8 +25,14 @@ extension ProfessorsViewModel {
     }
 }
 
-extension ProfessorsViewModel: ProfessorsViewModeling {
-    func getAllProfessors() -> [Cell<Professor>]{
-        return state.professors
+extension ProfessorsViewModel {
+    func saveProfessor(professor: Cell<Professor>) {
+        guard let index = state.professors.firstIndex(where: { $0.id == professor.id })  else { return }
+        delete(professor: professor)
+        state.professors.insert(professor, at: index)
+    }
+    
+    func delete(professor: Cell<Professor>) {
+        state.professors = state.professors.filter { $0.id != professor.id }
     }
 }

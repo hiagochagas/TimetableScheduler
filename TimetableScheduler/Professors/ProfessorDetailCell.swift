@@ -9,9 +9,13 @@ import SwiftUI
 
 struct ProfessorDetailCell: View {
     private let professorName: String
+    private let email: String
+    private let disciplines: [Cell<Discipline>]
     
-    init(professorName: String) {
+    init(professorName: String, email: String, disciplines: [Cell<Discipline>]) {
         self.professorName = professorName
+        self.email = email
+        self.disciplines = disciplines
     }
     
     var body: some View {
@@ -19,6 +23,8 @@ struct ProfessorDetailCell: View {
             backgroundShadow
             VStack(spacing: 8) {
                 nameLabel
+                emailLabel
+                disciplinesLabel
             }
             .padding(.all, 16)
         }
@@ -35,6 +41,30 @@ struct ProfessorDetailCell: View {
         HStack {
             Text(professorName)
             Spacer()
+        }
+    }
+    
+    private var emailLabel: some View {
+        HStack {
+            Text("Email: \(email)")
+            Spacer()
+        }
+    }
+    
+    private var disciplinesLabel: some View {
+        VStack {
+            if !disciplines.isEmpty {
+                HStack {
+                    Text("Disciplines:")
+                    Spacer()
+                }
+                ForEach(disciplines) { discipline in
+                    HStack {
+                        Text(discipline.object.name)
+                        Spacer()
+                    }
+                }
+            }
         }
     }
 }

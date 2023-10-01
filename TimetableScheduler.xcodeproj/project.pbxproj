@@ -27,6 +27,7 @@
 		855BDC8D2AC86398002181C7 /* DisciplineDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC8C2AC86398002181C7 /* DisciplineDetailCell.swift */; };
 		855BDC8F2AC8698D002181C7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC8E2AC8698D002181C7 /* CustomTabBar.swift */; };
 		855BDC912AC86A5C002181C7 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC902AC86A5C002181C7 /* Tab.swift */; };
+		855BDC932AC9FA60002181C7 /* ProfessorDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC922AC9FA60002181C7 /* ProfessorDetailSheet.swift */; };
 		85A578522AC6F284007E549A /* TimetableDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578512AC6F284007E549A /* TimetableDetailCell.swift */; };
 		85A578542AC6FA3D007E549A /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578532AC6FA3D007E549A /* TimetableViewModel.swift */; };
 		85A578562AC6FC4F007E549A /* TimetableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578552AC6FC4F007E549A /* TimetableState.swift */; };
@@ -65,6 +66,7 @@
 		855BDC8C2AC86398002181C7 /* DisciplineDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineDetailCell.swift; sourceTree = "<group>"; };
 		855BDC8E2AC8698D002181C7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		855BDC902AC86A5C002181C7 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		855BDC922AC9FA60002181C7 /* ProfessorDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorDetailSheet.swift; sourceTree = "<group>"; };
 		85A578512AC6F284007E549A /* TimetableDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDetailCell.swift; sourceTree = "<group>"; };
 		85A578532AC6FA3D007E549A /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		85A578552AC6FC4F007E549A /* TimetableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableState.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				85A5786C2AC84BD7007E549A /* ProfessorsState.swift */,
 				85A5786E2AC84D65007E549A /* ProfessorsViewModel.swift */,
 				855BDC7C2AC85086002181C7 /* ProfessorDetailCell.swift */,
+				855BDC922AC9FA60002181C7 /* ProfessorDetailSheet.swift */,
 			);
 			path = Professors;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				853B44F32AC4DB3100CF0B13 /* TimetableSchedulerApp.swift in Sources */,
 				855BDC8B2AC85E3B002181C7 /* DisciplinesRepository.swift in Sources */,
 				85A5785C2AC70BDE007E549A /* Professor.swift in Sources */,
+				855BDC932AC9FA60002181C7 /* ProfessorDetailSheet.swift in Sources */,
 				85A578632AC71001007E549A /* TimetableRepository.swift in Sources */,
 				853B450B2AC4E56B00CF0B13 /* SchedulesView.swift in Sources */,
 				855BDC852AC8587A002181C7 /* ScheduleDetailCell.swift in Sources */,
