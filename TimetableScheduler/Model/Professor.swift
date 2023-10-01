@@ -9,4 +9,6 @@ import Foundation
 
 struct Professor: Equatable {
     let name: String
+    let email: String
+    let disciplines: [Discipline]
 }

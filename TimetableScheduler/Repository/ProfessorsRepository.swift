@@ -18,11 +18,11 @@ final class ProfessorsRepository {
 extension ProfessorsRepository: ProfessorsRepositing {
     func fetchProfessors() -> [Professor] {
         return [
-            .init(name: "Henrique Leitão"),
-            .init(name: "Corneli"),
-            .init(name: "Ione"),
-            .init(name: "Levi"),
-            .init(name: "Darielson")
+            .init(name: "Henrique Leitão", email: "", disciplines: []),
+            .init(name: "Corneli", email: "", disciplines: []),
+            .init(name: "Ione", email: "", disciplines: []),
+            .init(name: "Levi", email: "", disciplines: []),
+            .init(name: "Darielson", email: "", disciplines: [])
         ]
     }
 }

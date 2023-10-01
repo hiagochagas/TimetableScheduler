@@ -20,7 +20,6 @@ struct TabBarView: View {
                     TabView(selection: $tabSelected) {
                         ForEach(Tab.allCases, id: \.rawValue) { tab in
                             HStack {
-                                Image(systemName: tab.rawValue)
                                 switch tab {
                                 case .timetable:
                                     timetableView

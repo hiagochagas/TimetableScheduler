@@ -9,4 +9,6 @@ import Foundation
 
 struct Room: Equatable {
     let name: String
+    let capacity: Int
+    let disciplines: [Discipline]
 }

@@ -9,4 +9,5 @@ import Foundation
 
 struct Discipline: Equatable {
     let name: String
+    let schedules: [Schedule]
 }

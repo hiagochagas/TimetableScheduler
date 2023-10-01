@@ -29,7 +29,7 @@ struct ScheduleDetailCell: View {
     private var backgroundShadow: some View {
         RoundedRectangle(cornerRadius: 8.0)
             .fill(Color.white)
-            .frame(width: .infinity, height: 120)
+            .frame(height: 120)
             .shadow(color: .gray, radius: 2, x: 0, y: 2)
     }
     

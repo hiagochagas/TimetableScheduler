@@ -18,11 +18,11 @@ final class DisciplinesRepository {
 extension DisciplinesRepository: DisciplinesRepositing {
     func fetchDisciplines() -> [Discipline] {
         [
-            .init(name: "APS"),
-            .init(name: "TJW"),
-            .init(name: "Administração"),
-            .init(name: "Compiladores"),
-            .init(name: "RNA")
+            .init(name: "APS", schedules: []),
+            .init(name: "TJW", schedules: []),
+            .init(name: "Administração", schedules: []),
+            .init(name: "Compiladores", schedules: []),
+            .init(name: "RNA", schedules: [])
         ]
     }
 }
