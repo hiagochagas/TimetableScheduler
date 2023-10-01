@@ -29,6 +29,7 @@
 		855BDC912AC86A5C002181C7 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC902AC86A5C002181C7 /* Tab.swift */; };
 		855BDC932AC9FA60002181C7 /* ProfessorDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC922AC9FA60002181C7 /* ProfessorDetailSheet.swift */; };
 		855BDC952ACA20CF002181C7 /* ScheduleDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC942ACA20CF002181C7 /* ScheduleDetailSheet.swift */; };
+		855BDC972ACA34C9002181C7 /* DisciplineDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC962ACA34C9002181C7 /* DisciplineDetailSheet.swift */; };
 		85A578522AC6F284007E549A /* TimetableDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578512AC6F284007E549A /* TimetableDetailCell.swift */; };
 		85A578542AC6FA3D007E549A /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578532AC6FA3D007E549A /* TimetableViewModel.swift */; };
 		85A578562AC6FC4F007E549A /* TimetableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578552AC6FC4F007E549A /* TimetableState.swift */; };
@@ -69,6 +70,7 @@
 		855BDC902AC86A5C002181C7 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		855BDC922AC9FA60002181C7 /* ProfessorDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessorDetailSheet.swift; sourceTree = "<group>"; };
 		855BDC942ACA20CF002181C7 /* ScheduleDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailSheet.swift; sourceTree = "<group>"; };
+		855BDC962ACA34C9002181C7 /* DisciplineDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineDetailSheet.swift; sourceTree = "<group>"; };
 		85A578512AC6F284007E549A /* TimetableDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDetailCell.swift; sourceTree = "<group>"; };
 		85A578532AC6FA3D007E549A /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		85A578552AC6FC4F007E549A /* TimetableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableState.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				855BDC862AC85D97002181C7 /* DisciplinesState.swift */,
 				855BDC882AC85DBB002181C7 /* DisciplinesViewModel.swift */,
 				855BDC8C2AC86398002181C7 /* DisciplineDetailCell.swift */,
+				855BDC962ACA34C9002181C7 /* DisciplineDetailSheet.swift */,
 			);
 			path = Disciplines;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				855BDC872AC85D97002181C7 /* DisciplinesState.swift in Sources */,
 				853B45092AC4E56200CF0B13 /* ProfessorsView.swift in Sources */,
 				85A578692AC849EE007E549A /* HeaderView.swift in Sources */,
+				855BDC972ACA34C9002181C7 /* DisciplineDetailSheet.swift in Sources */,
 				85A578542AC6FA3D007E549A /* TimetableViewModel.swift in Sources */,
 				855BDC7F2AC85516002181C7 /* SchedulesViewModel.swift in Sources */,
 				85A5785E2AC70C0A007E549A /* Room.swift in Sources */,

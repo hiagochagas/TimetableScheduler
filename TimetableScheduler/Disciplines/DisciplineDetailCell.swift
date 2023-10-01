@@ -2,7 +2,7 @@
 //  DisciplineDetailCell.swift
 //  TimetableScheduler
 //
-//  Created by PremierSoft on 30/09/23.
+//  Created by Hiago Chagas on 30/09/23.
 //
 
 import SwiftUI

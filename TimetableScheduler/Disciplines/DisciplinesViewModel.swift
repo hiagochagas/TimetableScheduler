@@ -7,12 +7,8 @@
 
 import Foundation
 
-protocol DisciplinesViewModeling {
-    func getAllDisciplines() -> [Cell<Discipline>]
-}
-
-final class DisciplinesViewModel {
-    private var state: DisciplinesState = .init()
+final class DisciplinesViewModel: ObservableObject {
+    @Published var state: DisciplinesState = .init()
     private let disciplinesRepository: DisciplinesRepositing
     
     init(disciplinesRepository: DisciplinesRepositing) {
@@ -30,8 +26,21 @@ extension DisciplinesViewModel {
     }
 }
 
-extension DisciplinesViewModel: DisciplinesViewModeling {
-    func getAllDisciplines() -> [Cell<Discipline>] {
-        return state.disciplines
+extension DisciplinesViewModel {
+    func saveDiscipline(_ discipline: Cell<Discipline>) {
+        guard let index = state.disciplines.firstIndex(where: { $0.id == discipline.id }) else {
+            createDiscipline(discipline)
+            return
+        }
+        deleteDiscipline(discipline)
+        state.disciplines.insert(discipline, at: index)
+    }
+    
+    private func createDiscipline(_ discipline: Cell<Discipline>) {
+        state.disciplines.insert(discipline, at: 0)
+    }
+    
+    func deleteDiscipline(_ discipline: Cell<Discipline>) {
+        state.disciplines = state.disciplines.filter { $0.id != discipline.id }
     }
 }
