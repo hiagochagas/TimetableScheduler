@@ -45,13 +45,13 @@ struct DisciplinesView: View {
                     selectedDiscipline = cell
                 }
             }
-            .sheet(item: $selectedDiscipline) { discipline in
-                openSheet(with: discipline, isCreating: false)
-            }
             .listRowSeparator(.hidden)
             Color(.clear)
                 .frame(height: 60)
                 .listRowSeparator(.hidden)
+        }
+        .sheet(item: $selectedDiscipline) { discipline in
+            openSheet(with: discipline, isCreating: false)
         }
         .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)

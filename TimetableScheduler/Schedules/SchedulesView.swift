@@ -44,13 +44,13 @@ struct SchedulesView: View {
                     section(for: weekday)
                 }
             }
-            .sheet(item: $selectedSchedule) { schedule in
-                openSheet(with: schedule, isCreating: false)
-            }
             .listRowSeparator(.hidden)
             Color(.clear)
                 .frame(height: 60)
                 .listRowSeparator(.hidden)
+        }
+        .sheet(item: $selectedSchedule) { schedule in
+            openSheet(with: schedule, isCreating: false)
         }
         .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)

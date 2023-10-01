@@ -53,13 +53,13 @@ struct ProfessorsView: View {
                     selectedProfessor = cell
                 }
             }
-            .sheet(item: $selectedProfessor) { professor in
-                openSheet(with: professor, isCreating: false)
-            }
             .listRowSeparator(.hidden)
             Color(.clear)
                 .frame(height: 60)
                 .listRowSeparator(.hidden)
+        }
+        .sheet(item: $selectedProfessor) { professor in
+            openSheet(with: professor, isCreating: false)
         }
         .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)
