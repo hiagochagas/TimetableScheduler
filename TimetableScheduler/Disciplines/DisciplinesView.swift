@@ -32,7 +32,11 @@ struct DisciplinesView: View {
                 DisciplineDetailCell(disciplineName: discipline.name)
             }
             .listRowSeparator(.hidden)
+            Color(.clear)
+                .frame(height: 60)
+                .listRowSeparator(.hidden)
         }
+        .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)
     }
 }

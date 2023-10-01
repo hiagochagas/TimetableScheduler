@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfessorsView: View {
+    @State private var isCreatingProfessor: Bool = false
     @State private var selectedProfessor: Cell<Professor>?
     @ObservedObject private var viewModel: ProfessorsViewModel
     
@@ -23,7 +24,17 @@ struct ProfessorsView: View {
     }
     
     private var topContent: some View {
-        HeaderView()
+        HeaderView(buttonType: .create, delegate: self)
+            .sheet(isPresented: $isCreatingProfessor) {
+                let newProfessor = Cell(
+                    object: Professor(
+                        name: "",
+                        email: "",
+                        disciplines: []
+                    )
+                )
+                openSheet(with: newProfessor, isCreating: true)
+            }
     }
     
     private var contentView: some View {
@@ -43,15 +54,19 @@ struct ProfessorsView: View {
                 }
             }
             .sheet(item: $selectedProfessor) { professor in
-                openSheet(with: professor)
+                openSheet(with: professor, isCreating: false)
             }
             .listRowSeparator(.hidden)
+            Color(.clear)
+                .frame(height: 60)
+                .listRowSeparator(.hidden)
         }
+        .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)
     }
     
-    private func openSheet(with professor: Cell<Professor>) -> some View {
-        ProfessorDetailSheet(professor: professor, delegate: self)
+    private func openSheet(with professor: Cell<Professor>, isCreating: Bool) -> some View {
+        ProfessorDetailSheet(professor: professor, delegate: self, isCreationType: isCreating)
             .presentationDetents([.height(200)])
     }
 }
@@ -63,5 +78,11 @@ extension ProfessorsView: ProfessorDetailSheetDelegate {
     
     func delete(professor: Cell<Professor>) {
         viewModel.delete(professor: professor)
+    }
+}
+
+extension ProfessorsView: HeaderViewDelegate {
+    func didTapButton() {
+        isCreatingProfessor = true
     }
 }

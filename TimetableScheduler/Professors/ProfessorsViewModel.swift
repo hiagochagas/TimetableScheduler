@@ -27,9 +27,16 @@ extension ProfessorsViewModel {
 
 extension ProfessorsViewModel {
     func saveProfessor(professor: Cell<Professor>) {
-        guard let index = state.professors.firstIndex(where: { $0.id == professor.id })  else { return }
+        guard let index = state.professors.firstIndex(where: { $0.id == professor.id }) else {
+            createProfessor(professor)
+            return
+        }
         delete(professor: professor)
         state.professors.insert(professor, at: index)
+    }
+    
+    private func createProfessor(_ professor: Cell<Professor>) {
+        state.professors.insert(professor, at: 0)
     }
     
     func delete(professor: Cell<Professor>) {

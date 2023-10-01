@@ -7,7 +7,33 @@
 
 import SwiftUI
 
+protocol HeaderViewDelegate {
+    func didTapButton()
+}
+
 struct HeaderView: View {
+    enum ButtonType {
+        case refresh
+        case create
+        
+        var imageName: String {
+            switch self {
+            case .refresh:
+                "arrow.clockwise"
+            case .create:
+                "pencil"
+            }
+        }
+    }
+    
+    private let buttonType: ButtonType
+    private var delegate: HeaderViewDelegate?
+    
+    init(buttonType: ButtonType = .refresh, delegate: HeaderViewDelegate? = nil) {
+        self.buttonType = buttonType
+        self.delegate = delegate
+    }
+    
     var body: some View {
         VStack(spacing: 24) {
             HStack {
@@ -18,7 +44,7 @@ struct HeaderView: View {
             HStack {
                 greetingText
                 Spacer()
-                refreshButton
+                actionButton
                     .padding(.trailing, 8)
             }
         }
@@ -48,12 +74,15 @@ struct HeaderView: View {
             .foregroundStyle(.white)
     }
     
-    private var refreshButton: some View {
-        Image(systemName: "arrow.clockwise")
-            .resizable()
-            .foregroundStyle(.white)
-            .frame(width: 20, height: 22)
-            
+    private var actionButton: some View {
+        Button {
+            delegate?.didTapButton()
+        } label: {
+            Image(systemName: buttonType.imageName)
+                .resizable()
+                .foregroundStyle(.white)
+                .frame(width: 20, height: 22)
+        }      
     }
 }
 

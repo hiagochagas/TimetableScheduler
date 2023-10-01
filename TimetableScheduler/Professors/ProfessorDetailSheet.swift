@@ -18,6 +18,7 @@ struct ProfessorDetailSheet: View {
     @State private var email: String = ""
     @State var professor: Cell<Professor>
     var delegate: ProfessorDetailSheetDelegate?
+    var isCreationType: Bool
     
     var body: some View {
         NavigationStack {
@@ -28,8 +29,8 @@ struct ProfessorDetailSheet: View {
                         let newProfessor = Cell(
                             id: professor.id,
                             object: Professor(
-                                name: name,
-                                email: email,
+                                name: name.isEmpty ? professor.object.name : name,
+                                email: email.isEmpty ? professor.object.email : email,
                                 disciplines: professor.object.disciplines
                             )
                         )
@@ -50,7 +51,9 @@ struct ProfessorDetailSheet: View {
         VStack(spacing: 16) {
             nameLabel
             emailLabel
-            deleteButton
+            if !isCreationType {
+                deleteButton
+            }
         }
         .padding(.all, 20)
     }

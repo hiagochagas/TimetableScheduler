@@ -32,7 +32,11 @@ struct SchedulesView: View {
                 ScheduleDetailCell(startTime: schedule.startTime, endTime: schedule.endTime)
             }
             .listRowSeparator(.hidden)
+            Color(.clear)
+                .frame(height: 60)
+                .listRowSeparator(.hidden)
         }
+        .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)
     }
 }

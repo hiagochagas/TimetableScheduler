@@ -36,7 +36,11 @@ extension TimetableView {
                 }
             }
             .listRowSeparator(.hidden)
+            Color(.clear)
+                .frame(height: 60)
+                .listRowSeparator(.hidden)
         }
+        .listStyle(PlainListStyle())
         .scrollContentBackground(.hidden)
     }
     
