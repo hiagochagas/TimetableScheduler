@@ -11,7 +11,7 @@ import SwiftUI
 struct TimetableSchedulerApp: App {
     var body: some Scene {
         WindowGroup {
-            TabBarView()
+            AppCoordinatorView(coordinator: AppCoordinator())
                 .preferredColorScheme(.light)
         }
     }
