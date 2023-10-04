@@ -10,7 +10,7 @@ import Foundation
 final class LoginViewModel: ObservableObject {
     @Published var state: LoginState = .init()
     private let adminRepository: AdminRepositing
-    private unowned var coordinator: AppCoordinator
+    unowned var coordinator: AppCoordinator
     
     init(adminRepository: AdminRepositing, coordinator: AppCoordinator) {
         self.adminRepository = adminRepository
@@ -23,7 +23,7 @@ extension LoginViewModel {
         if adminRepository.login(email: state.email, password: state.password) {
             coordinator.activeCoordinator = .tabBar
         } else {
-            coordinator.presentAlert(
+            presentAlert(
                 title: "Error",
                 message: "Something went wrong"
             )
@@ -31,6 +31,12 @@ extension LoginViewModel {
     }
     
     func signUp() {
-        coordinator.activeCoordinator = .signUp
+        state.isPresentingSignUp = true
+    }
+    
+    private func presentAlert(title: String, message: String) {
+        state.alertTitle = title
+        state.alertMessage = message
+        state.isPresentingAlert = true
     }
 }

@@ -1,16 +1,16 @@
 //
-//  LoginState.swift
+//  SignUpState.swift
 //  TimetableScheduler
 //
-//  Created by PremierSoft on 04/10/23.
+//  Created by Hiago Chagas on 04/10/23.
 //
 
 import Foundation
 
-struct LoginState {
+struct SignUpState {
     var email: String = ""
     var password: String = ""
-    var isPresentingSignUp = false
+    var name: String = ""
     var isPresentingAlert = false
     var alertTitle: String = ""
     var alertMessage: String = ""

@@ -9,6 +9,5 @@ import Foundation
 
 enum Coordinator {
     case login
-    case signUp
     case tabBar
 }

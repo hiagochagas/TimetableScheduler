@@ -15,6 +15,9 @@
 		852D37C22ACDFDAA001136B8 /* AppCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37C12ACDFDAA001136B8 /* AppCoordinatorView.swift */; };
 		852D37C42ACDFDE0001136B8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37C32ACDFDE0001136B8 /* AppCoordinator.swift */; };
 		852D37C62ACDFFE1001136B8 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37C52ACDFFE1001136B8 /* Coordinator.swift */; };
+		852D37C92ACE0501001136B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37C82ACE0501001136B8 /* SignUpView.swift */; };
+		852D37CB2ACE05E2001136B8 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37CA2ACE05E2001136B8 /* SignUpViewModel.swift */; };
+		852D37CD2ACE08F3001136B8 /* SignUpState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37CC2ACE08F3001136B8 /* SignUpState.swift */; };
 		853B44F32AC4DB3100CF0B13 /* TimetableSchedulerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */; };
 		853B44F72AC4DB3300CF0B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853B44F62AC4DB3300CF0B13 /* Assets.xcassets */; };
 		853B44FA2AC4DB3300CF0B13 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853B44F92AC4DB3300CF0B13 /* Preview Assets.xcassets */; };
@@ -63,6 +66,9 @@
 		852D37C12ACDFDAA001136B8 /* AppCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorView.swift; sourceTree = "<group>"; };
 		852D37C32ACDFDE0001136B8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		852D37C52ACDFFE1001136B8 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		852D37C82ACE0501001136B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		852D37CA2ACE05E2001136B8 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		852D37CC2ACE08F3001136B8 /* SignUpState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpState.swift; sourceTree = "<group>"; };
 		853B44EF2AC4DB3100CF0B13 /* TimetableScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimetableScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSchedulerApp.swift; sourceTree = "<group>"; };
 		853B44F62AC4DB3300CF0B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +139,16 @@
 			path = Coordinators;
 			sourceTree = "<group>";
 		};
+		852D37C72ACE04F1001136B8 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				852D37C82ACE0501001136B8 /* SignUpView.swift */,
+				852D37CA2ACE05E2001136B8 /* SignUpViewModel.swift */,
+				852D37CC2ACE08F3001136B8 /* SignUpState.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		853B44E62AC4DB3100CF0B13 = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +168,7 @@
 		853B44F12AC4DB3100CF0B13 /* TimetableScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				852D37C72ACE04F1001136B8 /* SignIn */,
 				852D37C02ACDFD9A001136B8 /* Coordinators */,
 				852D37B52ACDE236001136B8 /* Login */,
 				85A578642AC76723007E549A /* Utils */,
@@ -354,8 +371,10 @@
 				85A578602AC70CB9007E549A /* Schedule.swift in Sources */,
 				852D37BD2ACDF949001136B8 /* AdminRepository.swift in Sources */,
 				855BDC952ACA20CF002181C7 /* ScheduleDetailSheet.swift in Sources */,
+				852D37CB2ACE05E2001136B8 /* SignUpViewModel.swift in Sources */,
 				853B45072AC4E54800CF0B13 /* TimetableView.swift in Sources */,
 				85A5786D2AC84BD7007E549A /* ProfessorsState.swift in Sources */,
+				852D37CD2ACE08F3001136B8 /* SignUpState.swift in Sources */,
 				85A578662AC7672C007E549A /* Cell.swift in Sources */,
 				85A578562AC6FC4F007E549A /* TimetableState.swift in Sources */,
 				853B450E2AC4EE3E00CF0B13 /* DisciplinesView.swift in Sources */,
@@ -382,6 +401,7 @@
 				853B45112AC4F01200CF0B13 /* Weekdays.swift in Sources */,
 				855BDC7D2AC85086002181C7 /* ProfessorDetailCell.swift in Sources */,
 				85A5785A2AC70B46007E549A /* Discipline.swift in Sources */,
+				852D37C92ACE0501001136B8 /* SignUpView.swift in Sources */,
 				852D37BB2ACDE504001136B8 /* LoginState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
