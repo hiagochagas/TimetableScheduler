@@ -13,6 +13,10 @@ protocol AdminRepositing {
 }
 
 final class AdminRepository {
+    static let shared = AdminRepository()
+    
+    private init() {}
+    
     private var admins: [Admin] = [
         .init(
             name: "Instituto Federal do Ceará",
@@ -23,7 +27,7 @@ final class AdminRepository {
 
 extension AdminRepository: AdminRepositing {
     func login(email: String, password: String) -> Bool {
-        guard let foundUser = admins.first(where: { admin in
+        guard let _ = admins.first(where: { admin in
             admin.email == email && admin.password == password
         }) else {
             return false
@@ -32,6 +36,7 @@ extension AdminRepository: AdminRepositing {
     }
     
     func signUp(name: String, email: String, password: String) -> Bool {
+        guard !name.isEmpty, !email.isEmpty, !password.isEmpty else { return false }
         guard !admins.contains(where: { $0.email == email }) else { return false }
         admins.append(
             Admin(name: name, email: email, password: password)

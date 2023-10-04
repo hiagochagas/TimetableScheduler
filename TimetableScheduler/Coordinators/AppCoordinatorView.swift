@@ -19,32 +19,19 @@ struct AppCoordinatorView: View {
             switch coordinator.activeCoordinator {
             case .login:
                 loginView
-            case .signUp:
-                signUpView
             case .tabBar:
                 tabBarView
             }
-        }.alert(isPresented: $coordinator.isPresentingAlert) {
-            Alert(
-                title: Text(coordinator.alertTitle),
-                message: Text(coordinator.alertMessage)
-            )
         }
     }
     
     private var loginView: some View {
         LoginView(
             viewModel: .init(
-                adminRepository: AdminRepository(),
+                adminRepository: AdminRepository.shared,
                 coordinator: coordinator
             )
         )
-    }
-    
-    private var signUpView: some View {
-        VStack {
-            // SignUpView
-        }
     }
     
     private var tabBarView: some View {
