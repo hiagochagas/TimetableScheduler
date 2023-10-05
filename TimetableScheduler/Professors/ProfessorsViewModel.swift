@@ -10,36 +10,34 @@ import Foundation
 final class ProfessorsViewModel: ObservableObject {
     @Published var state: ProfessorsState = .init()
     private let professorsRepository: ProfessorsRepositing
+    let admin: Admin
     
-    init(professorsRepository: ProfessorsRepositing) {
+    init(professorsRepository: ProfessorsRepositing, admin: Admin) {
         self.professorsRepository = professorsRepository
-        state.professors = fetchProfessors()
+        self.admin = admin
+        fetchProfessors()
     }
 }
 
 extension ProfessorsViewModel {
-    private func fetchProfessors() -> [Cell<Professor>] {
-        return professorsRepository.fetchProfessors().compactMap { professor in
-            Cell(object: professor)
-        }
+    private func fetchProfessors() {
+        state.professors = professorsRepository.fetchProfessors()
     }
 }
 
 extension ProfessorsViewModel {
-    func saveProfessor(professor: Cell<Professor>) {
-        guard let index = state.professors.firstIndex(where: { $0.id == professor.id }) else {
-            createProfessor(professor)
-            return
-        }
-        delete(professor: professor)
-        state.professors.insert(professor, at: index)
+    func updateProfessor(_ professor: Professor) {
+        professorsRepository.updateProfessor(professor)
+        fetchProfessors()
     }
     
-    private func createProfessor(_ professor: Cell<Professor>) {
-        state.professors.insert(professor, at: 0)
+    func addProfessor(_ professor: Professor) {
+        professorsRepository.addProfessor(professor)
+        fetchProfessors()
     }
     
-    func delete(professor: Cell<Professor>) {
-        state.professors = state.professors.filter { $0.id != professor.id }
+    func deleteProfessor(_ professor: Professor) {
+        professorsRepository.deleteProfessor(professor)
+        fetchProfessors()
     }
 }

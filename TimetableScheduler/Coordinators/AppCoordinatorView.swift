@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AppCoordinatorView: View {
+    @Environment(\.modelContext) var modelContext
     @ObservedObject private var coordinator: AppCoordinator
     
     init(coordinator: AppCoordinator) {
@@ -19,8 +20,8 @@ struct AppCoordinatorView: View {
             switch coordinator.activeCoordinator {
             case .login:
                 loginView
-            case .tabBar:
-                tabBarView
+            case .tabBar(let admin):
+                tabBarView(with: admin)
             }
         }
     }
@@ -28,14 +29,14 @@ struct AppCoordinatorView: View {
     private var loginView: some View {
         LoginView(
             viewModel: .init(
-                adminRepository: AdminRepository.shared,
+                adminRepository: AdminRepository(context: modelContext),
                 coordinator: coordinator
             )
         )
     }
     
-    private var tabBarView: some View {
-        TabBarView()
+    private func tabBarView(with admin: Admin) -> some View {
+        TabBarView(admin: admin)
     }
 }
 

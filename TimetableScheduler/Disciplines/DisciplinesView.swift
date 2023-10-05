@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DisciplinesView: View {
     @State private var isCreatingDiscipline: Bool = false
-    @State private var selectedDiscipline: Cell<Discipline>?
+    @State private var selectedDiscipline: Discipline?
     @ObservedObject private var viewModel: DisciplinesViewModel
     
     init(viewModel: DisciplinesViewModel) {
@@ -24,25 +24,19 @@ struct DisciplinesView: View {
     }
     
     private var topContent: some View {
-        HeaderView(buttonType: .create, delegate: self)
+        HeaderView(admin: viewModel.admin, buttonType: .create, delegate: self)
             .sheet(isPresented: $isCreatingDiscipline) {
-                let newProfessor = Cell(
-                    object: Discipline(
-                        name: "",
-                        schedules: []
-                    )
-                )
-                openSheet(with: newProfessor, isCreating: true)
+                let newDiscipline = Discipline(name: "")
+                openSheet(with: newDiscipline, isCreating: true)
             }
     }
     
     private var contentView: some View {
         List {
-            ForEach(viewModel.state.disciplines) { cell in
-                let discipline = cell.object
+            ForEach(viewModel.state.disciplines) { discipline in
                 DisciplineDetailCell(disciplineName: discipline.name)
                 .onTapGesture {
-                    selectedDiscipline = cell
+                    selectedDiscipline = discipline
                 }
             }
             .listRowSeparator(.hidden)
@@ -57,19 +51,23 @@ struct DisciplinesView: View {
         .scrollContentBackground(.hidden)
     }
     
-    private func openSheet(with discipline: Cell<Discipline>, isCreating: Bool) -> some View {
+    private func openSheet(with discipline: Discipline, isCreating: Bool) -> some View {
         DisciplineDetailSheet(discipline: discipline, delegate: self, isCreationType: isCreating)
             .presentationDetents([.height(150)])
     }
 }
 
 extension DisciplinesView: DisciplineDetailSheetDelegate {
-    func didSave(discipline: Cell<Discipline>) {
-        viewModel.saveDiscipline(discipline)
+    func create(discipline: Discipline) {
+        viewModel.addDiscipline(discipline)
     }
     
-    func delete(discipline: Cell<Discipline>) {
+    func delete(discipline: Discipline) {
         viewModel.deleteDiscipline(discipline)
+    }
+    
+    func update(discipline: Discipline) {
+        viewModel.updateDiscipline(discipline)
     }
 }
 

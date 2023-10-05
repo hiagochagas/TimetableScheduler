@@ -9,6 +9,7 @@ import SwiftUI
 import GoogleSignInSwift
 
 struct LoginView: View {
+    @Environment(\.modelContext) var modelContext
     @ObservedObject private var viewModel: LoginViewModel
     
     init(viewModel: LoginViewModel) {
@@ -42,7 +43,7 @@ struct LoginView: View {
             SignUpView(
                 viewModel: .init(
                     coordinator: viewModel.coordinator,
-                    adminRepository: AdminRepository.shared
+                    adminRepository: AdminRepository(context: modelContext)
                 )
             )
         }
@@ -92,7 +93,7 @@ struct LoginView: View {
                 Text("Password")
                 Spacer()
             }
-            TextField("Enter your password", text: $viewModel.state.password)
+            SecureField("Enter your password", text: $viewModel.state.password)
         }
     }
     

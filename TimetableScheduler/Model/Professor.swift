@@ -6,9 +6,18 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Professor: Equatable {
-    let name: String
-    let email: String
-    let disciplines: [Discipline]
+@Model
+class Professor: Equatable {
+    var name: String
+    @Attribute(.unique)
+    var email: String
+    @Relationship(inverse: \Admin.professors)
+    var admin: Admin?
+    
+    init(name: String, email: String) {
+        self.name = name
+        self.email = email
+    }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfessorsView: View {
     @State private var isCreatingProfessor: Bool = false
-    @State private var selectedProfessor: Cell<Professor>?
+    @State private var selectedProfessor: Professor?
     @ObservedObject private var viewModel: ProfessorsViewModel
     
     init(viewModel: ProfessorsViewModel) {
@@ -24,14 +24,11 @@ struct ProfessorsView: View {
     }
     
     private var topContent: some View {
-        HeaderView(buttonType: .create, delegate: self)
+        HeaderView(admin: viewModel.admin, buttonType: .create, delegate: self)
             .sheet(isPresented: $isCreatingProfessor) {
-                let newProfessor = Cell(
-                    object: Professor(
-                        name: "",
-                        email: "",
-                        disciplines: []
-                    )
+                let newProfessor = Professor(
+                    name: "",
+                    email: ""
                 )
                 openSheet(with: newProfessor, isCreating: true)
             }
@@ -39,18 +36,14 @@ struct ProfessorsView: View {
     
     private var contentView: some View {
         List {
-            ForEach(viewModel.state.professors) { cell in
-                let professor = cell.object
-                let disciplines = professor.disciplines.compactMap { discipline in
-                    Cell(object: discipline)
-                }
+            ForEach(viewModel.state.professors) { professor in
                 ProfessorDetailCell(
                     professorName: professor.name,
                     email: professor.email,
-                    disciplines: disciplines
+                    disciplines: []
                 )
                 .onTapGesture {
-                    selectedProfessor = cell
+                    selectedProfessor = professor
                 }
             }
             .listRowSeparator(.hidden)
@@ -65,19 +58,23 @@ struct ProfessorsView: View {
         .scrollContentBackground(.hidden)
     }
     
-    private func openSheet(with professor: Cell<Professor>, isCreating: Bool) -> some View {
+    private func openSheet(with professor: Professor, isCreating: Bool) -> some View {
         ProfessorDetailSheet(professor: professor, delegate: self, isCreationType: isCreating)
             .presentationDetents([.height(200)])
     }
 }
 
 extension ProfessorsView: ProfessorDetailSheetDelegate {
-    func didSave(professor: Cell<Professor>) {
-        viewModel.saveProfessor(professor: professor)
+    func update(professor: Professor) {
+        viewModel.addProfessor(professor)
     }
     
-    func delete(professor: Cell<Professor>) {
-        viewModel.delete(professor: professor)
+    func delete(professor: Professor) {
+        viewModel.deleteProfessor(professor)
+    }
+    
+    func create(professor: Professor) {
+        viewModel.addProfessor(professor)
     }
 }
 

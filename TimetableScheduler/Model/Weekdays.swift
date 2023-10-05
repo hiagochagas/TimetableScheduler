@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Weekdays: Identifiable, CaseIterable {
+public enum Weekdays: Identifiable, CaseIterable, Codable {
     case monday
     case tuesday
     case wednesday

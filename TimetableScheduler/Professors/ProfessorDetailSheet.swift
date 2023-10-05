@@ -8,15 +8,16 @@
 import SwiftUI
 
 protocol ProfessorDetailSheetDelegate {
-    func didSave(professor: Cell<Professor>)
-    func delete(professor: Cell<Professor>)
+    func create(professor: Professor)
+    func delete(professor: Professor)
+    func update(professor: Professor)
 }
 
 struct ProfessorDetailSheet: View {
     @Environment(\.dismiss) var dismiss
     @State private var name: String = ""
     @State private var email: String = ""
-    @State var professor: Cell<Professor>
+    @State var professor: Professor
     var delegate: ProfessorDetailSheetDelegate?
     var isCreationType: Bool
     
@@ -26,15 +27,14 @@ struct ProfessorDetailSheet: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {
-                        let newProfessor = Cell(
-                            id: professor.id,
-                            object: Professor(
-                                name: name.isEmpty ? professor.object.name : name,
-                                email: email.isEmpty ? professor.object.email : email,
-                                disciplines: professor.object.disciplines
-                            )
-                        )
-                        delegate?.didSave(professor: newProfessor)
+                        professor.name = name.isEmpty ? professor.name : name
+                        professor.email = email.isEmpty ? professor.email : email
+                        if isCreationType {
+                            delegate?.create(professor: professor)
+                        } else {
+                            delegate?.update(professor: professor)
+                        }
+                        
                         dismiss()
                     }.tint(.green)
                 }
@@ -62,7 +62,7 @@ struct ProfessorDetailSheet: View {
         HStack {
             Text("Name: ")
             Spacer()
-            TextField("\(professor.object.name)", text: $name)
+            TextField("\(professor.name)", text: $name)
         }
     }
     
@@ -70,7 +70,7 @@ struct ProfessorDetailSheet: View {
         HStack {
             Text("Email: ")
             Spacer()
-            TextField("\(professor.object.email)", text: $email)
+            TextField("\(professor.email)", text: $email)
         }
     }
     

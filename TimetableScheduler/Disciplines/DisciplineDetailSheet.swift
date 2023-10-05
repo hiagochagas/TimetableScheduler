@@ -8,14 +8,15 @@
 import SwiftUI
 
 protocol DisciplineDetailSheetDelegate {
-    func didSave(discipline: Cell<Discipline>)
-    func delete(discipline: Cell<Discipline>)
+    func create(discipline: Discipline)
+    func delete(discipline: Discipline)
+    func update(discipline: Discipline)
 }
 
 struct DisciplineDetailSheet: View {
     @Environment(\.dismiss) var dismiss
     @State private var name: String = ""
-    @State var discipline: Cell<Discipline>
+    @State var discipline: Discipline
     var delegate: DisciplineDetailSheetDelegate?
     var isCreationType: Bool
     
@@ -25,14 +26,12 @@ struct DisciplineDetailSheet: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {
-                        let newDiscipline = Cell(
-                            id: discipline.id,
-                            object: Discipline(
-                                name: name.isEmpty ? discipline.object.name : name,
-                                schedules: []
-                            )
-                        )
-                        delegate?.didSave(discipline: newDiscipline)
+                        discipline.name = name.isEmpty ? discipline.name : name
+                        if isCreationType {
+                            delegate?.create(discipline: discipline)
+                        } else {
+                            delegate?.update(discipline: discipline)
+                        }
                         dismiss()
                     }.tint(.green)
                 }
@@ -59,7 +58,7 @@ struct DisciplineDetailSheet: View {
         HStack {
             Text("Name: ")
             Spacer()
-            TextField("\(discipline.object.name)", text: $name)
+            TextField("\(discipline.name)", text: $name)
         }
     }
     

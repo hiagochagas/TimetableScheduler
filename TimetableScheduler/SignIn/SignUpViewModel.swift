@@ -20,8 +20,8 @@ final class SignUpViewModel: ObservableObject {
 
 extension SignUpViewModel {
     func signUp() {
-        if adminRepository.signUp(name: state.name, email: state.email, password: state.password) {
-            coordinator.activeCoordinator = .tabBar
+        if let admin = adminRepository.signUp(name: state.name, email: state.email, password: state.password) {
+            coordinator.activeCoordinator = .tabBar(admin: admin)
         } else {
             presentAlert(title: "Error", message: "Something went wrong while signing up")
         }

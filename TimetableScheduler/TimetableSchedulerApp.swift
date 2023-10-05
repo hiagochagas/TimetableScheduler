@@ -7,6 +7,7 @@
 
 import SwiftUI
 import GoogleSignIn
+import SwiftData
 
 @main
 struct TimetableSchedulerApp: App {
@@ -17,6 +18,7 @@ struct TimetableSchedulerApp: App {
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
+                .modelContainer(for: [Admin.self])
         }
     }
 }

@@ -21,8 +21,8 @@ final class LoginViewModel: ObservableObject {
 
 extension LoginViewModel {
     func login() {
-        if adminRepository.login(email: state.email, password: state.password) {
-            coordinator.activeCoordinator = .tabBar
+        if let admin = adminRepository.login(email: state.email, password: state.password) {
+            coordinator.activeCoordinator = .tabBar(admin: admin)
         } else {
             presentAlert(
                 title: "Error",
@@ -60,10 +60,10 @@ extension LoginViewModel {
                 self?.presentAlert(title: "Error", message: "Error on Google Sign In")
                 return
             }
-            if adminRepository.login(email: email, password: password) {
-                coordinator.activeCoordinator = .tabBar
-            } else if adminRepository.signUp(name: name, email: email, password: password) {
-                coordinator.activeCoordinator = .tabBar
+            if let admin = adminRepository.login(email: email, password: password) {
+                coordinator.activeCoordinator = .tabBar(admin: admin)
+            } else if let admin = adminRepository.signUp(name: name, email: email, password: password) {
+                coordinator.activeCoordinator = .tabBar(admin: admin)
             } else {
                 presentAlert(title: "Error", message: "Error on Google Sign In")
             }

@@ -8,8 +8,9 @@
 import SwiftUI
 
 protocol ScheduleDetailSheetDelegate {
-    func didSave(schedule: Cell<Schedule>)
-    func delete(schedule: Cell<Schedule>)
+    func create(schedule: Schedule)
+    func delete(schedule: Schedule)
+    func update(schedule: Schedule)
 }
 
 struct ScheduleDetailSheet: View {
@@ -17,15 +18,15 @@ struct ScheduleDetailSheet: View {
     @State private var startTime: String = ""
     @State private var endTime: String = ""
     @State private var dayOfTheWeek: Weekdays
-    @State var schedule: Cell<Schedule>
+    @State var schedule: Schedule
     var delegate: ScheduleDetailSheetDelegate?
     var isCreationType: Bool
     
-    init(schedule: Cell<Schedule>, delegate: ScheduleDetailSheetDelegate? = nil, isCreationType: Bool) {
+    init(schedule: Schedule, delegate: ScheduleDetailSheetDelegate? = nil, isCreationType: Bool) {
         self._schedule = State(initialValue: schedule)
         self.delegate = delegate
         self.isCreationType = isCreationType
-        self._dayOfTheWeek = State(initialValue: schedule.object.dayOfTheWeek)
+        self._dayOfTheWeek = State(initialValue: schedule.dayOfTheWeek)
     }
     
     var body: some View {
@@ -34,15 +35,14 @@ struct ScheduleDetailSheet: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {
-                        let newSchedule = Cell(
-                            id: schedule.id,
-                            object: Schedule(
-                                dayOfTheWeek: dayOfTheWeek ?? schedule.object.dayOfTheWeek,
-                                startTime: startTime.isEmpty ? schedule.object.startTime : startTime,
-                                endTime: endTime.isEmpty ? schedule.object.endTime : endTime
-                            )
-                        )
-                        delegate?.didSave(schedule: newSchedule)
+                        schedule.dayOfTheWeek = dayOfTheWeek 
+                        schedule.startTime = startTime.isEmpty ? schedule.startTime : startTime
+                        schedule.endTime = endTime.isEmpty ? schedule.endTime : endTime
+                        if isCreationType {
+                            delegate?.create(schedule: schedule)
+                        } else {
+                            delegate?.update(schedule: schedule)
+                        }
                         dismiss()
                     }.tint(.green)
                 }
@@ -71,7 +71,7 @@ struct ScheduleDetailSheet: View {
         HStack {
             Text("Start time: ")
             Spacer()
-            TextField("\(schedule.object.startTime)", text: $startTime)
+            TextField("\(schedule.startTime)", text: $startTime)
         }
     }
     
@@ -79,7 +79,7 @@ struct ScheduleDetailSheet: View {
         HStack {
             Text("End time: ")
             Spacer()
-            TextField("\(schedule.object.endTime)", text: $endTime)
+            TextField("\(schedule.endTime)", text: $endTime)
         }
     }
     

@@ -8,5 +8,5 @@
 import Foundation
 
 struct SchedulesState {
-    var schedules: [Cell<Schedule>] = []
+    var schedules: [Schedule] = []
 }

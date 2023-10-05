@@ -96,7 +96,7 @@ struct SignUpView: View {
                 Text("Password")
                 Spacer()
             }
-            TextField("Enter your password", text: $viewModel.state.password)
+            SecureField("Enter your password", text: $viewModel.state.password)
         }
     }
     

@@ -9,5 +9,5 @@ import Foundation
 
 enum Coordinator {
     case login
-    case tabBar
+    case tabBar(admin: Admin)
 }
