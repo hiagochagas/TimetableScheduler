@@ -27,6 +27,7 @@ struct HeaderView: View {
     }
     
     private let buttonType: ButtonType
+    @State private var loggedAdmin = AdminRepository.shared.loggedAdmin
     private var delegate: HeaderViewDelegate?
     
     init(buttonType: ButtonType = .refresh, delegate: HeaderViewDelegate? = nil) {
@@ -66,7 +67,7 @@ struct HeaderView: View {
     }
     
     private var institutionName: some View {
-        Text("Instituto Federal do Ceará")
+        Text(loggedAdmin?.name ?? "")
             .foregroundStyle(.white)
     }
     

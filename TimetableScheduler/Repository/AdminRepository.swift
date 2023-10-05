@@ -12,7 +12,9 @@ protocol AdminRepositing {
     func signUp(name: String, email: String, password: String) -> Bool
 }
 
-final class AdminRepository {
+final class AdminRepository: ObservableObject {
+    @Published var loggedAdmin: Admin?
+    
     static let shared = AdminRepository()
     
     private init() {}
@@ -27,20 +29,28 @@ final class AdminRepository {
 
 extension AdminRepository: AdminRepositing {
     func login(email: String, password: String) -> Bool {
-        guard let _ = admins.first(where: { admin in
+        guard let admin = admins.first(where: { admin in
             admin.email == email && admin.password == password
         }) else {
+            loggedAdmin = nil
             return false
         }
+        loggedAdmin = admin
         return true
     }
     
     func signUp(name: String, email: String, password: String) -> Bool {
-        guard !name.isEmpty, !email.isEmpty, !password.isEmpty else { return false }
-        guard !admins.contains(where: { $0.email == email }) else { return false }
-        admins.append(
-            Admin(name: name, email: email, password: password)
-        )
+        guard !name.isEmpty,
+              !email.isEmpty,
+              !password.isEmpty,
+              !admins.contains(where: { $0.email == email })
+        else {
+            loggedAdmin = nil
+            return false
+        }
+        let admin = Admin(name: name, email: email, password: password)
+        admins.append(admin)
+        loggedAdmin = admin
         return true
     }
     
