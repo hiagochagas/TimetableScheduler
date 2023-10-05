@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignInSwift
 
 struct LoginView: View {
     @ObservedObject private var viewModel: LoginViewModel
@@ -68,8 +69,10 @@ struct LoginView: View {
         VStack(spacing: 8) {
             loginButton
             divider
-    //        googleButton
-            signUpButton
+            VStack(spacing: 16) {
+                googleButton
+                signUpButton
+            }
         }
     }
     
@@ -112,6 +115,14 @@ struct LoginView: View {
     
     var line: some View {
         VStack { Divider() }.padding(20)
+    }
+    
+    private var googleButton: some View {
+        HStack {
+            GoogleSignInButton {
+                viewModel.googleLogin()
+            }
+        }.frame(width: 100)
     }
     
     private var signUpButton: some View {

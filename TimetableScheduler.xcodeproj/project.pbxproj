@@ -18,6 +18,9 @@
 		852D37C92ACE0501001136B8 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37C82ACE0501001136B8 /* SignUpView.swift */; };
 		852D37CB2ACE05E2001136B8 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37CA2ACE05E2001136B8 /* SignUpViewModel.swift */; };
 		852D37CD2ACE08F3001136B8 /* SignUpState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D37CC2ACE08F3001136B8 /* SignUpState.swift */; };
+		852D37DE2ACF2719001136B8 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 852D37DD2ACF2719001136B8 /* GoogleSignInSwift */; };
+		852D37E42ACF2763001136B8 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 852D37E32ACF2763001136B8 /* GoogleSignIn */; };
+		852D37E62ACF2763001136B8 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 852D37E52ACF2763001136B8 /* GoogleSignInSwift */; };
 		853B44F32AC4DB3100CF0B13 /* TimetableSchedulerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */; };
 		853B44F72AC4DB3300CF0B13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853B44F62AC4DB3300CF0B13 /* Assets.xcassets */; };
 		853B44FA2AC4DB3300CF0B13 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853B44F92AC4DB3300CF0B13 /* Preview Assets.xcassets */; };
@@ -69,6 +72,7 @@
 		852D37C82ACE0501001136B8 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		852D37CA2ACE05E2001136B8 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		852D37CC2ACE08F3001136B8 /* SignUpState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpState.swift; sourceTree = "<group>"; };
+		852D37E72ACF2822001136B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		853B44EF2AC4DB3100CF0B13 /* TimetableScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimetableScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		853B44F22AC4DB3100CF0B13 /* TimetableSchedulerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSchedulerApp.swift; sourceTree = "<group>"; };
 		853B44F62AC4DB3300CF0B13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,6 +118,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				852D37E62ACF2763001136B8 /* GoogleSignInSwift in Frameworks */,
+				852D37DE2ACF2719001136B8 /* GoogleSignInSwift in Frameworks */,
+				852D37E42ACF2763001136B8 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +175,7 @@
 		853B44F12AC4DB3100CF0B13 /* TimetableScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				852D37E72ACF2822001136B8 /* Info.plist */,
 				852D37C72ACE04F1001136B8 /* SignIn */,
 				852D37C02ACDFD9A001136B8 /* Coordinators */,
 				852D37B52ACDE236001136B8 /* Login */,
@@ -303,6 +311,11 @@
 			dependencies = (
 			);
 			name = TimetableScheduler;
+			packageProductDependencies = (
+				852D37DD2ACF2719001136B8 /* GoogleSignInSwift */,
+				852D37E32ACF2763001136B8 /* GoogleSignIn */,
+				852D37E52ACF2763001136B8 /* GoogleSignInSwift */,
+			);
 			productName = TimetableScheduler;
 			productReference = 853B44EF2AC4DB3100CF0B13 /* TimetableScheduler.app */;
 			productType = "com.apple.product-type.application";
@@ -331,6 +344,9 @@
 				Base,
 			);
 			mainGroup = 853B44E62AC4DB3100CF0B13;
+			packageReferences = (
+				852D37DC2ACF2719001136B8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
 			productRefGroup = 853B44F02AC4DB3100CF0B13 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -534,6 +550,7 @@
 				DEVELOPMENT_TEAM = BSANZ76H3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimetableScheduler/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -563,6 +580,7 @@
 				DEVELOPMENT_TEAM = BSANZ76H3Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimetableScheduler/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -603,6 +621,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		852D37DC2ACF2719001136B8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		852D37DD2ACF2719001136B8 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 852D37DC2ACF2719001136B8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+		852D37E32ACF2763001136B8 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 852D37DC2ACF2719001136B8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		852D37E52ACF2763001136B8 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 852D37DC2ACF2719001136B8 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 853B44E72AC4DB3100CF0B13 /* Project object */;
 }

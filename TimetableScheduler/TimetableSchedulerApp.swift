@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignIn
 
 @main
 struct TimetableSchedulerApp: App {
@@ -13,6 +14,9 @@ struct TimetableSchedulerApp: App {
         WindowGroup {
             AppCoordinatorView(coordinator: AppCoordinator())
                 .preferredColorScheme(.light)
+                .onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
         }
     }
 }
