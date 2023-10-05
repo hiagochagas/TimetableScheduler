@@ -1,10 +1,3 @@
-//
-//  LoginViewModel.swift
-//  TimetableScheduler
-//
-//  Created by Hiago Chagas on 04/10/23.
-//
-
 import Foundation
 import GoogleSignIn
 
@@ -21,14 +14,11 @@ final class LoginViewModel: ObservableObject {
 
 extension LoginViewModel {
     func login() {
-        if adminRepository.login(email: state.email, password: state.password) {
-            coordinator.activeCoordinator = .tabBar
-        } else {
-            presentAlert(
-                title: "Error",
-                message: "Something went wrong in login"
-            )
+        guard adminRepository.login(email: state.email, password: state.password) else {
+            presentAlert(title: "Error", message: "Something went wrong in login")
+            return
         }
+        coordinator.activeCoordinator = .tabBar
     }
     
     func signUp() {
@@ -42,7 +32,7 @@ extension LoginViewModel {
     }
     
     func googleLogin() {
-        guard let presentingViewController = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.windows.first?.rootViewController else {
+        guard let presentingViewController = UIApplication.shared.keyWindow?.rootViewController else {
             presentAlert(title: "Error", message: "Error on Google Sign In")
             return
         }
@@ -50,22 +40,15 @@ extension LoginViewModel {
         GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: "347248752064-l43vgdh8e8794s068i12bs4n6tasura9.apps.googleusercontent.com")
         
         GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { [weak self] signInResult, error in
-            guard let self,
-                  error == nil,
-                  let user = signInResult?.user,
-                  let email = user.profile?.email,
-                  let password = user.userID,
-                  let name = user.profile?.givenName
-            else {
+            guard let self = self, error == nil, let user = signInResult?.user, let email = user.profile?.email, let password = user.userID, let name = user.profile?.givenName else {
                 self?.presentAlert(title: "Error", message: "Error on Google Sign In")
                 return
             }
-            if adminRepository.login(email: email, password: password) {
-                coordinator.activeCoordinator = .tabBar
-            } else if adminRepository.signUp(name: name, email: email, password: password) {
-                coordinator.activeCoordinator = .tabBar
+            
+            if self.adminRepository.login(email: email, password: password) || self.adminRepository.signUp(name: name, email: email, password: password) {
+                self.coordinator.activeCoordinator = .tabBar
             } else {
-                presentAlert(title: "Error", message: "Error on Google Sign In")
+                self.presentAlert(title: "Error", message: "Error on Google Sign In")
             }
         }
     }
