@@ -43,7 +43,6 @@ struct HeaderView: View {
                 profileImage
             }
             HStack {
-                greetingText
                 Spacer()
                 if buttonType != .refresh {
                     actionButton
@@ -61,19 +60,13 @@ struct HeaderView: View {
           .resizable()
           .frame(width: 20, height: 20)
           .foregroundStyle(.white)
-          .padding(20)
+          .padding(10)
           .background(Color.green)
           .clipShape(Circle())
     }
     
     private var institutionName: some View {
-        Text(loggedAdmin?.name ?? "")
-            .foregroundStyle(.white)
-    }
-    
-    
-    private var greetingText: some View {
-        Text("Greetings, administrator")
+        Text("Hello, \(loggedAdmin?.name ?? "")")
             .foregroundStyle(.white)
     }
     
