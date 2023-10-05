@@ -13,6 +13,8 @@ class Admin {
     @Attribute(.unique) let email: String
     let name: String
     let password: String
+    @Relationship
+    var professors: [Professor] = []
     
     init(name: String, email: String, password: String) {
         self.name = name

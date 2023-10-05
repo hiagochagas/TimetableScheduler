@@ -27,10 +27,11 @@ struct HeaderView: View {
     }
     
     private let buttonType: ButtonType
-    @State private var loggedAdmin = Admin(name: "Default", email: "a", password: "b")
+    private let admin: Admin
     private var delegate: HeaderViewDelegate?
     
-    init(buttonType: ButtonType = .refresh, delegate: HeaderViewDelegate? = nil) {
+    init(admin: Admin, buttonType: ButtonType = .refresh, delegate: HeaderViewDelegate? = nil) {
+        self.admin = admin
         self.buttonType = buttonType
         self.delegate = delegate
     }
@@ -66,7 +67,7 @@ struct HeaderView: View {
     }
     
     private var institutionName: some View {
-        Text("Hello, \(loggedAdmin.name)")
+        Text("Hello, \(admin.name)")
             .foregroundStyle(.white)
     }
     
@@ -80,8 +81,4 @@ struct HeaderView: View {
                 .frame(width: 20, height: 22)
         }      
     }
-}
-
-#Preview {
-    HeaderView()
 }

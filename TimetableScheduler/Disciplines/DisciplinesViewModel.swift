@@ -10,9 +10,11 @@ import Foundation
 final class DisciplinesViewModel: ObservableObject {
     @Published var state: DisciplinesState = .init()
     private let disciplinesRepository: DisciplinesRepositing
+    let admin: Admin
     
-    init(disciplinesRepository: DisciplinesRepositing) {
+    init(disciplinesRepository: DisciplinesRepositing, admin: Admin) {
         self.disciplinesRepository = disciplinesRepository
+        self.admin = admin
         state.disciplines = fetchAllDisciplines()
     }
     

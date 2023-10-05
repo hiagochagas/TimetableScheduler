@@ -10,9 +10,11 @@ import Foundation
 final class SchedulesViewModel: ObservableObject {
     @Published var state: SchedulesState = .init()
     private let schedulesRepository: SchedulesRepositing
+    let admin: Admin
     
-    init(schedulesRepository: SchedulesRepositing) {
+    init(schedulesRepository: SchedulesRepositing, admin: Admin) {
         self.schedulesRepository = schedulesRepository
+        self.admin = admin
         state.schedules = fetchAllSchedules()
     }
     

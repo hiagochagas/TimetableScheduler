@@ -24,7 +24,7 @@ struct SchedulesView: View {
     }
     
     private var topContent: some View {
-        HeaderView(buttonType: .create, delegate: self)
+        HeaderView(admin: viewModel.admin, buttonType: .create, delegate: self)
             .sheet(isPresented: $isCreatingSchedule) {
                 let newSchedule = Cell(
                     object: Schedule(

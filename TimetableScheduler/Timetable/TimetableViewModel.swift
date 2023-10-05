@@ -8,15 +8,18 @@
 import Foundation
 
 protocol TimetableViewModeling {
+    var admin: Admin { get }
     func getTimetables(for weekday: Weekdays) -> [Cell<Timetable>]
 }
 
 final class TimetableViewModel {
     private let timetableRepository: TimetableRepositing
     var state: TimetableState = .init()
+    var admin: Admin
     
-    init(timetableRepository: TimetableRepositing) {
+    init(timetableRepository: TimetableRepositing, admin: Admin) {
         self.timetableRepository = timetableRepository
+        self.admin = admin
         state.timetables = getAllTimetables()
     }
 }

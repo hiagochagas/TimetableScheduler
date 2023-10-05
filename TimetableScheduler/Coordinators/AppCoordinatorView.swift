@@ -20,8 +20,8 @@ struct AppCoordinatorView: View {
             switch coordinator.activeCoordinator {
             case .login:
                 loginView
-            case .tabBar:
-                tabBarView
+            case .tabBar(let admin):
+                tabBarView(with: admin)
             }
         }
     }
@@ -35,8 +35,8 @@ struct AppCoordinatorView: View {
         )
     }
     
-    private var tabBarView: some View {
-        TabBarView()
+    private func tabBarView(with admin: Admin) -> some View {
+        TabBarView(admin: admin)
     }
 }
 

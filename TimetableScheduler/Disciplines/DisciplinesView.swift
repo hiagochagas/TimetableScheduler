@@ -24,7 +24,7 @@ struct DisciplinesView: View {
     }
     
     private var topContent: some View {
-        HeaderView(buttonType: .create, delegate: self)
+        HeaderView(admin: viewModel.admin, buttonType: .create, delegate: self)
             .sheet(isPresented: $isCreatingDiscipline) {
                 let newProfessor = Cell(
                     object: Discipline(

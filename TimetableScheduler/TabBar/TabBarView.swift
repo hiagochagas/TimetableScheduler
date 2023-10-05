@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @Environment(\.modelContext) private var modelContext
     @State private var tabSelected: Tab = .timetable
-        
-    init() {
+    private let admin: Admin
+    
+    init(admin: Admin) {
+        self.admin = admin
         UITabBar.appearance().isHidden = true
     }
     
@@ -45,7 +48,8 @@ struct TabBarView: View {
     private var timetableView: some View {
         TimetableView(
             viewModel: TimetableViewModel(
-                timetableRepository: TimetableRepository()
+                timetableRepository: TimetableRepository(),
+                admin: admin
             )
         )
     }
@@ -53,7 +57,11 @@ struct TabBarView: View {
     private var professorsView: some View {
         ProfessorsView(
             viewModel: ProfessorsViewModel(
-                professorsRepository: ProfessorsRepository()
+                professorsRepository: ProfessorsRepository(
+                    context: modelContext,
+                    loggedAdmin: admin
+                ),
+                admin: admin
             )
         )
     }
@@ -61,7 +69,8 @@ struct TabBarView: View {
     private var schedulesView: some View {
         SchedulesView(
             viewModel: SchedulesViewModel(
-                schedulesRepository: SchedulesRepository()
+                schedulesRepository: SchedulesRepository(),
+                admin: admin
             )
         )
     }
@@ -69,7 +78,8 @@ struct TabBarView: View {
     private var disciplinesView: some View {
         DisciplinesView(
             viewModel: DisciplinesViewModel(
-                disciplinesRepository: DisciplinesRepository()
+                disciplinesRepository: DisciplinesRepository(),
+                admin: admin
             )
         )
     }

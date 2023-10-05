@@ -9,14 +9,12 @@ import Foundation
 import SwiftData
 
 protocol AdminRepositing {
-    func login(email: String, password: String) -> Bool
-    func signUp(name: String, email: String, password: String) -> Bool
+    func login(email: String, password: String) -> Admin?
+    func signUp(name: String, email: String, password: String) -> Admin?
 }
 
 final class AdminRepository: ObservableObject {
-    @Published var loggedAdmin: Admin?
     private let context: ModelContext
-//    static let shared = AdminRepository()
     
     init(context: ModelContext) {
         self.context = context
@@ -32,36 +30,32 @@ final class AdminRepository: ObservableObject {
 }
 
 extension AdminRepository: AdminRepositing {
-    func login(email: String, password: String) -> Bool {
+    func login(email: String, password: String) -> Admin? {
         guard let admin = admins.first(where: { admin in
             admin.email == email && admin.password == password
         }) else {
-            loggedAdmin = nil
-            return false
+            return nil
         }
-        loggedAdmin = admin
-        return true
+        return admin
     }
     
-    func signUp(name: String, email: String, password: String) -> Bool {
+    func signUp(name: String, email: String, password: String) -> Admin? {
         guard !name.isEmpty,
               !email.isEmpty,
               !password.isEmpty,
               !admins.contains(where: { $0.email == email })
         else {
-            loggedAdmin = nil
-            return false
+            return nil
         }
-        
         let admin = Admin(name: name, email: email, password: password)
         context.insert(admin)
         do {
             try saveContext()
         } catch {
-            return false
+            return nil
         }
         fetchAdmins()
-        return true
+        return admin
     }
     
     private func saveContext() throws {

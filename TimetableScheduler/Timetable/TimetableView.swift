@@ -25,7 +25,7 @@ struct TimetableView: View {
 // MARK: - Views
 extension TimetableView {
     private var topContent: some View {
-        HeaderView()
+        HeaderView(admin: viewModel.admin)
     }
     
     private var timetableView: some View {
