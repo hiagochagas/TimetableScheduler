@@ -15,8 +15,10 @@ class Admin {
     let password: String
     @Relationship
     var professors: [Professor] = []
-    @Relationship()
+    @Relationship
     var schedules: [Schedule] = []
+    @Relationship
+    var disciplines: [Discipline] = []
     
     init(name: String, email: String, password: String) {
         self.name = name

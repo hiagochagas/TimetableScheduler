@@ -8,5 +8,5 @@
 import Foundation
 
 struct DisciplinesState {
-    var disciplines: [Cell<Discipline>] = []
+    var disciplines: [Discipline] = []
 }

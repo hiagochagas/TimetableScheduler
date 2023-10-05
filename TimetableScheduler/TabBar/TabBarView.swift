@@ -80,7 +80,10 @@ struct TabBarView: View {
     private var disciplinesView: some View {
         DisciplinesView(
             viewModel: DisciplinesViewModel(
-                disciplinesRepository: DisciplinesRepository(),
+                disciplinesRepository: DisciplinesRepository(
+                    context: modelContext,
+                    loggedAdmin: admin
+                ),
                 admin: admin
             )
         )

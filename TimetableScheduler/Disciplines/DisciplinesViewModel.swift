@@ -15,34 +15,29 @@ final class DisciplinesViewModel: ObservableObject {
     init(disciplinesRepository: DisciplinesRepositing, admin: Admin) {
         self.disciplinesRepository = disciplinesRepository
         self.admin = admin
-        state.disciplines = fetchAllDisciplines()
-    }
-    
-}
-
-extension DisciplinesViewModel {
-    private func fetchAllDisciplines() -> [Cell<Discipline>]{
-        return disciplinesRepository.fetchDisciplines().compactMap { discipline in
-            Cell(object: discipline)
-        }
+        fetchAllDisciplines()
     }
 }
 
 extension DisciplinesViewModel {
-    func saveDiscipline(_ discipline: Cell<Discipline>) {
-        guard let index = state.disciplines.firstIndex(where: { $0.id == discipline.id }) else {
-            createDiscipline(discipline)
-            return
-        }
-        deleteDiscipline(discipline)
-        state.disciplines.insert(discipline, at: index)
+    private func fetchAllDisciplines() {
+        state.disciplines = disciplinesRepository.fetchDisciplines()
+    }
+}
+
+extension DisciplinesViewModel {
+    func updateDiscipline(_ discipline: Discipline) {
+        disciplinesRepository.updateDiscipline(discipline)
+        fetchAllDisciplines()
     }
     
-    private func createDiscipline(_ discipline: Cell<Discipline>) {
-        state.disciplines.insert(discipline, at: 0)
+    func addDiscipline(_ discipline: Discipline) {
+        disciplinesRepository.addDiscipline(discipline)
+        fetchAllDisciplines()
     }
     
-    func deleteDiscipline(_ discipline: Cell<Discipline>) {
-        state.disciplines = state.disciplines.filter { $0.id != discipline.id }
+    func deleteDiscipline(_ discipline: Discipline) {
+        disciplinesRepository.deleteDiscipline(discipline)
+        fetchAllDisciplines()
     }
 }
