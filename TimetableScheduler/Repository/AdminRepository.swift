@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 protocol AdminRepositing {
     func login(email: String, password: String) -> Bool
@@ -14,17 +15,20 @@ protocol AdminRepositing {
 
 final class AdminRepository: ObservableObject {
     @Published var loggedAdmin: Admin?
+    private let context: ModelContext
+//    static let shared = AdminRepository()
     
-    static let shared = AdminRepository()
+    init(context: ModelContext) {
+        self.context = context
+        fetchAdmins()
+    }
     
-    private init() {}
+    private var admins: [Admin] = []
     
-    private var admins: [Admin] = [
-        .init(
-            name: "Instituto Federal do Ceará",
-            email: "admin@ifce.edu.br",
-            password: "123456")
-    ]
+    private func fetchAdmins() {
+        let description = FetchDescriptor<Admin>()
+        admins = (try? context.fetch(description)) ?? []
+    }
 }
 
 extension AdminRepository: AdminRepositing {
@@ -48,10 +52,23 @@ extension AdminRepository: AdminRepositing {
             loggedAdmin = nil
             return false
         }
+        
         let admin = Admin(name: name, email: email, password: password)
-        admins.append(admin)
-        loggedAdmin = admin
+        context.insert(admin)
+        do {
+            try saveContext()
+        } catch {
+            return false
+        }
+        fetchAdmins()
         return true
     }
     
+    private func saveContext() throws {
+        do {
+            try context.save()
+        } catch {
+            throw error
+        }
+    }
 }
