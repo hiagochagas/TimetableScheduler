@@ -6,9 +6,21 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Schedule: Equatable {
-    let dayOfTheWeek: Weekdays
-    let startTime: String
-    let endTime: String
+@Model
+class Schedule: Equatable {
+    var dayOfTheWeek: Weekdays
+    var startTime: String
+    var endTime: String
+    
+    @Relationship(inverse: \Admin.schedules)
+    var admin: Admin?
+    
+    init(dayOfTheWeek: Weekdays, startTime: String, endTime: String, admin: Admin? = nil) {
+        self.dayOfTheWeek = dayOfTheWeek
+        self.startTime = startTime
+        self.endTime = endTime
+        self.admin = admin
+    }
 }

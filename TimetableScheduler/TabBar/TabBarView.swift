@@ -69,7 +69,9 @@ struct TabBarView: View {
     private var schedulesView: some View {
         SchedulesView(
             viewModel: SchedulesViewModel(
-                schedulesRepository: SchedulesRepository(),
+                schedulesRepository: SchedulesRepository(
+                    context: modelContext,
+                    loggedAdmin: admin),
                 admin: admin
             )
         )

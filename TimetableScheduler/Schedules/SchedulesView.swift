@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SchedulesView: View {
     @ObservedObject private var viewModel: SchedulesViewModel
-    @State private var selectedSchedule: Cell<Schedule>?
+    @State private var selectedSchedule: Schedule?
     @State private var isCreatingSchedule = false
     
     init(viewModel: SchedulesViewModel) {
@@ -26,12 +26,10 @@ struct SchedulesView: View {
     private var topContent: some View {
         HeaderView(admin: viewModel.admin, buttonType: .create, delegate: self)
             .sheet(isPresented: $isCreatingSchedule) {
-                let newSchedule = Cell(
-                    object: Schedule(
-                        dayOfTheWeek: .monday,
-                        startTime: "",
-                        endTime: ""
-                    )
+                let newSchedule = Schedule(
+                    dayOfTheWeek: .monday,
+                    startTime: "",
+                    endTime: ""
                 )
                 openSheet(with: newSchedule, isCreating: true)
             }
@@ -57,28 +55,31 @@ struct SchedulesView: View {
     }
     
     private func section(for weekday: Weekdays) -> some View {
-        ForEach(viewModel.getSchedules(for: weekday)) { cell in
-            let schedule = cell.object
+        ForEach(viewModel.getSchedules(for: weekday)) { schedule in
             ScheduleDetailCell(startTime: schedule.startTime, endTime: schedule.endTime)
                 .onTapGesture {
-                    selectedSchedule = cell
+                    selectedSchedule = schedule
                 }
         }
     }
     
-    private func openSheet(with schedule: Cell<Schedule>, isCreating: Bool) -> some View {
+    private func openSheet(with schedule: Schedule, isCreating: Bool) -> some View {
         ScheduleDetailSheet(schedule: schedule, delegate: self, isCreationType: isCreating)
             .presentationDetents([.height(200)])
     }
 }
 
 extension SchedulesView: ScheduleDetailSheetDelegate {
-    func didSave(schedule: Cell<Schedule>) {
-        viewModel.saveSchedule(schedule)
+    func create(schedule: Schedule) {
+        viewModel.addSchedule(schedule)
     }
     
-    func delete(schedule: Cell<Schedule>) {
+    func delete(schedule: Schedule) {
         viewModel.deleteSchedule(schedule)
+    }
+    
+    func update(schedule: Schedule) {
+        viewModel.updateSchedule(schedule)
     }
 }
 

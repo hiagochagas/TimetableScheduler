@@ -36,11 +36,6 @@ extension ProfessorsViewModel {
         fetchProfessors()
     }
     
-    private func createProfessor(_ professor: Professor) {
-        professorsRepository.addProfessor(professor)
-        fetchProfessors()
-    }
-    
     func deleteProfessor(_ professor: Professor) {
         professorsRepository.deleteProfessor(professor)
         fetchProfessors()
