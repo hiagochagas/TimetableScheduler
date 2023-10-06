@@ -10,6 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     @Environment(\.dismiss) var dismiss
     @ObservedObject private var viewModel: SignUpViewModel
+    @State private var showFieldContent: Bool = false
     
     init(viewModel: SignUpViewModel) {
         self.viewModel = viewModel
@@ -96,8 +97,29 @@ struct SignUpView: View {
                 Text("Password")
                 Spacer()
             }
-            SecureField("Enter your password", text: $viewModel.state.password)
+            HStack {
+                secureField
+                Spacer()
+                Image(systemName: showFieldContent ? "eye.fill": "eye.slash.fill")
+                    .renderingMode(.template)
+                    .onTapGesture {
+                        showFieldContent.toggle()
+                    }
+                    .foregroundColor(.black)
+                    .padding(.trailing, 14)
+            }
         }
+    }
+    
+    private var secureField: some View {
+        ZStack {
+            let placeholder = "Enter your password"
+            TextField(placeholder, text: $viewModel.state.password)
+                .opacity(showFieldContent ? 1 : 0)
+            SecureField(placeholder, text: $viewModel.state.password)
+                .opacity(showFieldContent ? 0 : 1)
+        }
+        .animation(.none, value: showFieldContent)
     }
     
     private var signUpButton: some View {
