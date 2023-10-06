@@ -97,7 +97,7 @@ struct LoginView: View {
             HStack {
                 secureField
                 Spacer()
-                Image(systemName: showFieldContent ? "eye.fill": "eye.slash.fill")
+                Image(systemName: showFieldContent ? "eye.slash.fill": "eye.fill")
                     .renderingMode(.template)
                     .onTapGesture {
                         showFieldContent.toggle()
