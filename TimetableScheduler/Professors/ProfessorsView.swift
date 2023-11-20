@@ -28,7 +28,8 @@ struct ProfessorsView: View {
             .sheet(isPresented: $isCreatingProfessor) {
                 let newProfessor = Professor(
                     name: "",
-                    email: ""
+                    email: "",
+                    disciplines: []
                 )
                 openSheet(with: newProfessor, isCreating: true)
             }

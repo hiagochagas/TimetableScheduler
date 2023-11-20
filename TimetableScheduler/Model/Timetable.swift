@@ -10,7 +10,6 @@ import Foundation
 struct Timetable: Equatable {
     let weekDay: Weekdays
     let discipline: Discipline
-    let room: Room
     let professor: Professor
     let schedule: Schedule
 }

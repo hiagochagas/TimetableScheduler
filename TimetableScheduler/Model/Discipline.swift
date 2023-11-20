@@ -12,12 +12,14 @@ import SwiftData
 class Discipline: Equatable {
     @Attribute(.unique)
     var name: String
+    var semester: Int
     
     @Relationship(inverse: \Admin.disciplines)
     var admin: Admin?
     
-    init(name: String, admin: Admin? = nil) {
+    init(name: String, semester: Int, admin: Admin? = nil) {
         self.name = name
+        self.semester = semester
         self.admin = admin
     }
 }

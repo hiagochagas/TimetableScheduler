@@ -49,7 +49,6 @@ extension TimetableView {
             let timetable = cell.object
             TimetableDetailCell(
                 disciplineName: timetable.discipline.name,
-                roomName: timetable.room.name,
                 startTime: timetable.schedule.startTime,
                 endTime: timetable.schedule.endTime
             )

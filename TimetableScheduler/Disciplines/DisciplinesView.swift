@@ -26,7 +26,7 @@ struct DisciplinesView: View {
     private var topContent: some View {
         HeaderView(admin: viewModel.admin, buttonType: .create, delegate: self)
             .sheet(isPresented: $isCreatingDiscipline) {
-                let newDiscipline = Discipline(name: "")
+                let newDiscipline = Discipline(name: "", semester: 0)
                 openSheet(with: newDiscipline, isCreating: true)
             }
     }

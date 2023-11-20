@@ -15,9 +15,12 @@ class Professor: Equatable {
     var email: String
     @Relationship(inverse: \Admin.professors)
     var admin: Admin?
+    @Relationship
+    var disciplines: [Discipline]
     
-    init(name: String, email: String) {
+    init(name: String, email: String, disciplines: [Discipline]) {
         self.name = name
         self.email = email
+        self.disciplines = disciplines
     }
 }
