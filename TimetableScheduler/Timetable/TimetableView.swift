@@ -25,7 +25,7 @@ struct TimetableView: View {
 // MARK: - Views
 extension TimetableView {
     private var topContent: some View {
-        HeaderView(admin: viewModel.admin)
+        HeaderView(admin: viewModel.admin, delegate: self)
     }
     
     private var timetableView: some View {
@@ -49,9 +49,16 @@ extension TimetableView {
             let timetable = cell.object
             TimetableDetailCell(
                 disciplineName: timetable.discipline.name,
-                startTime: timetable.schedule.startTime,
-                endTime: timetable.schedule.endTime
+                startTime: timetable.schedule?.startTime ?? "",
+                endTime: timetable.schedule?.endTime ?? ""
             )
         }
+    }
+}
+
+// MARK: - HeaderViewDelegate
+extension TimetableView: HeaderViewDelegate {
+    func didTapButton() {
+        viewModel.resetTimetable()
     }
 }

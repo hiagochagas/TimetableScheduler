@@ -41,7 +41,7 @@ struct ProfessorsView: View {
                 ProfessorDetailCell(
                     professorName: professor.name,
                     email: professor.email,
-                    disciplines: []
+                    disciplines: professor.disciplines
                 )
                 .onTapGesture {
                     selectedProfessor = professor

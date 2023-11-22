@@ -45,10 +45,8 @@ struct HeaderView: View {
             }
             HStack {
                 Spacer()
-                if buttonType != .refresh {
-                    actionButton
-                        .padding(.trailing, 8)
-                }
+                actionButton
+                    .padding(.trailing, 8)
             }
         }
         .padding(.horizontal, 20)

@@ -10,9 +10,9 @@ import SwiftUI
 struct ProfessorDetailCell: View {
     private let professorName: String
     private let email: String
-    private let disciplines: [Cell<Discipline>]
+    private let disciplines: [Discipline]
     
-    init(professorName: String, email: String, disciplines: [Cell<Discipline>]) {
+    init(professorName: String, email: String, disciplines: [Discipline]) {
         self.professorName = professorName
         self.email = email
         self.disciplines = disciplines
@@ -60,7 +60,7 @@ struct ProfessorDetailCell: View {
                 }
                 ForEach(disciplines) { discipline in
                     HStack {
-                        Text(discipline.object.name)
+                        Text(discipline.name)
                         Spacer()
                     }
                 }

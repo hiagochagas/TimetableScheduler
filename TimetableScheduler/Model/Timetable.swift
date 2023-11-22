@@ -7,9 +7,18 @@
 
 import Foundation
 
-struct Timetable: Equatable {
-    let weekDay: Weekdays
+class Timetable: Equatable {
     let discipline: Discipline
     let professor: Professor
-    let schedule: Schedule
+    var schedule: Schedule?
+    
+    init(discipline: Discipline, professor: Professor, schedule: Schedule? = nil) {
+        self.discipline = discipline
+        self.professor = professor
+        self.schedule = schedule
+    }
+    
+    static func == (lhs: Timetable, rhs: Timetable) -> Bool {
+        lhs.discipline == rhs.discipline && lhs.professor == rhs.professor
+    }
 }
