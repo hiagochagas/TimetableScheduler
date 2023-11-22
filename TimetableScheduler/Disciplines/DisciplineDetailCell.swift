@@ -9,9 +9,11 @@ import SwiftUI
 
 struct DisciplineDetailCell: View {
     private let disciplineName: String
+    private let semester: Int
     
-    init(disciplineName: String) {
+    init(disciplineName: String, semester: Int) {
         self.disciplineName = disciplineName
+        self.semester = semester
     }
     
     var body: some View {
@@ -19,6 +21,7 @@ struct DisciplineDetailCell: View {
             backgroundShadow
             VStack(spacing: 8) {
                 disciplineLabel
+                semesterLabel
             }
             .padding(.all, 16)
         }
@@ -34,6 +37,13 @@ struct DisciplineDetailCell: View {
     private var disciplineLabel: some View {
         HStack {
             Text(disciplineName)
+            Spacer()
+        }
+    }
+    
+    private var semesterLabel: some View {
+        HStack {
+            Text("Semester \(semester)")
             Spacer()
         }
     }

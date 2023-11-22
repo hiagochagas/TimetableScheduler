@@ -16,9 +16,17 @@ protocol DisciplineDetailSheetDelegate {
 struct DisciplineDetailSheet: View {
     @Environment(\.dismiss) var dismiss
     @State private var name: String = ""
+    @State private var semester: Int
     @State var discipline: Discipline
     var delegate: DisciplineDetailSheetDelegate?
     var isCreationType: Bool
+    
+    init(discipline: Discipline, delegate: DisciplineDetailSheetDelegate? = nil, isCreationType: Bool) {
+        self._discipline = State(initialValue: discipline)
+        self.delegate = delegate
+        self.isCreationType = isCreationType
+        self._semester = State(initialValue: discipline.semester)
+    }
     
     var body: some View {
         NavigationStack {
@@ -27,6 +35,7 @@ struct DisciplineDetailSheet: View {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {
                         discipline.name = name.isEmpty ? discipline.name : name
+                        discipline.semester = semester
                         if isCreationType {
                             delegate?.create(discipline: discipline)
                         } else {
@@ -47,6 +56,7 @@ struct DisciplineDetailSheet: View {
     private var contentView: some View {
         VStack(spacing: 16) {
             nameLabel
+            semesterSelector
             if !isCreationType {
                 deleteButton
             }
@@ -59,6 +69,18 @@ struct DisciplineDetailSheet: View {
             Text("Name: ")
             Spacer()
             TextField("\(discipline.name)", text: $name)
+        }
+    }
+    
+    private var semesterSelector: some View {
+        HStack {
+            Text("Semester: ")
+            Spacer()
+            Picker("Semester", selection: $semester) {
+                ForEach(1...8, id: \.self) {
+                    Text("\($0)")
+                }
+            }.tint(.green)
         }
     }
     

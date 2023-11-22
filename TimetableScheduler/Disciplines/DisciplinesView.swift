@@ -26,7 +26,7 @@ struct DisciplinesView: View {
     private var topContent: some View {
         HeaderView(admin: viewModel.admin, buttonType: .create, delegate: self)
             .sheet(isPresented: $isCreatingDiscipline) {
-                let newDiscipline = Discipline(name: "", semester: 0)
+                let newDiscipline = Discipline(name: "", semester: 1)
                 openSheet(with: newDiscipline, isCreating: true)
             }
     }
@@ -34,7 +34,7 @@ struct DisciplinesView: View {
     private var contentView: some View {
         List {
             ForEach(viewModel.state.disciplines) { discipline in
-                DisciplineDetailCell(disciplineName: discipline.name)
+                DisciplineDetailCell(disciplineName: discipline.name, semester: discipline.semester)
                 .onTapGesture {
                     selectedDiscipline = discipline
                 }
