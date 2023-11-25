@@ -68,6 +68,14 @@ struct TabBarView: View {
                     context: modelContext,
                     loggedAdmin: admin
                 ),
+                disciplinesRepository: DisciplinesRepository(
+                    context: modelContext,
+                    loggedAdmin: admin
+                ),
+                schedulesRepository: SchedulesRepository(
+                    context: modelContext,
+                    loggedAdmin: admin
+                ),
                 admin: admin
             )
         )

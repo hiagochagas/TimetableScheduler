@@ -60,8 +60,14 @@ struct ProfessorsView: View {
     }
     
     private func openSheet(with professor: Professor, isCreating: Bool) -> some View {
-        ProfessorDetailSheet(professor: professor, delegate: self, isCreationType: isCreating)
-            .presentationDetents([.height(200)])
+        ProfessorDetailSheet(
+            professor: professor,
+            delegate: self,
+            isCreationType: isCreating,
+            disciplines: viewModel.getDisciplines(),
+            schedules: viewModel.getSchedules()
+        )
+        .presentationDetents([.height(200)])
     }
 }
 
