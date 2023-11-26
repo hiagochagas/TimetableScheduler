@@ -15,7 +15,11 @@ enum RepositoryType {
     case timetable
 }
 
-final class RepositoryFactory {
+protocol RepositoryFactory {
+    func getRepository(for type: RepositoryType) -> any CommonRepository
+}
+
+final class RepositoryFactoryImpl {
     private var repositories: [RepositoryType: any CommonRepository] = [:]
     private let modelContext: ModelContext
     private let loggedAdmin: Admin
@@ -24,7 +28,9 @@ final class RepositoryFactory {
         self.modelContext = modelContext
         self.loggedAdmin = loggedAdmin
     }
-    
+}
+
+extension RepositoryFactoryImpl: RepositoryFactory {
     func getRepository(for type: RepositoryType) -> any CommonRepository {
         if let repository = repositories[type] {
             return repository

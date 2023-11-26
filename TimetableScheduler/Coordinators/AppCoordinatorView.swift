@@ -36,7 +36,13 @@ struct AppCoordinatorView: View {
     }
     
     private func tabBarView(with admin: Admin) -> some View {
-        TabBarView(modelContext: modelContext, admin: admin)
+        TabBarView(
+            repositoryFactory: RepositoryFactoryImpl(
+                modelContext: modelContext,
+                loggedAdmin: admin
+            ),
+            admin: admin
+        )
     }
 }
 

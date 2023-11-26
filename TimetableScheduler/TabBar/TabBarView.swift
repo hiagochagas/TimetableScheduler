@@ -13,9 +13,9 @@ struct TabBarView: View {
     private let admin: Admin
     private let repositoryFactory: RepositoryFactory
     
-    init(modelContext: ModelContext, admin: Admin) {
+    init(repositoryFactory: RepositoryFactory, admin: Admin) {
         self.admin = admin
-        self.repositoryFactory = .init(modelContext: modelContext, loggedAdmin: admin)
+        self.repositoryFactory = repositoryFactory
         UITabBar.appearance().isHidden = true
     }
     
