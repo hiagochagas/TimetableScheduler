@@ -48,9 +48,12 @@ struct TabBarView: View {
         }
     
     private var timetableView: some View {
-        TimetableView(
+        let isProxyActive = false
+        let repository = repositoryFactory.getRepository(for: .timetable)
+        let timetableRepository = isProxyActive ? TimetableRepositoryProxy(repository: repository as! TimetableRepository) : repository
+        return TimetableView(
             viewModel: TimetableViewModel(
-                timetableRepository: repositoryFactory.getRepository(for: .timetable) as! (any TimetableRepositing),
+                timetableRepository: timetableRepository as! (any TimetableRepositing),
                 professorsRepository: repositoryFactory.getRepository(for: .professor) as! any ProfessorsRepositing,
                 schedulesRepository: repositoryFactory.getRepository(for: .schedule) as! any SchedulesRepositing,
                 admin: admin

@@ -2,7 +2,7 @@
 //  RepositoryFactory.swift
 //  TimetableScheduler
 //
-//  Created by PremierSoft on 26/11/23.
+//  Created by Hiago Chagas on 26/11/23.
 //
 
 import Foundation

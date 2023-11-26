@@ -73,7 +73,7 @@ struct ProfessorsView: View {
 
 extension ProfessorsView: ProfessorDetailSheetDelegate {
     func update(professor: Professor) {
-        viewModel.addProfessor(professor)
+        viewModel.updateProfessor(professor)
     }
     
     func delete(professor: Professor) {
