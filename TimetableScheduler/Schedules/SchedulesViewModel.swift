@@ -9,10 +9,10 @@ import Foundation
 
 final class SchedulesViewModel: ObservableObject {
     @Published var state: SchedulesState = .init()
-    private let schedulesRepository: SchedulesRepositing
+    private let schedulesRepository: any SchedulesRepositing
     let admin: Admin
     
-    init(schedulesRepository: SchedulesRepositing, admin: Admin) {
+    init(schedulesRepository: any SchedulesRepositing, admin: Admin) {
         self.schedulesRepository = schedulesRepository
         self.admin = admin
         fetchAllSchedules()
@@ -22,7 +22,7 @@ final class SchedulesViewModel: ObservableObject {
 
 extension SchedulesViewModel {
     private func fetchAllSchedules(){
-        state.schedules = schedulesRepository.fetchSchedules()
+        state.schedules = schedulesRepository.getAll()
     }
 }
 
@@ -32,17 +32,17 @@ extension SchedulesViewModel {
     }
     
     func updateSchedule(_ schedule: Schedule) {
-        schedulesRepository.updateSchedule(schedule)
+        schedulesRepository.updateModel(model: schedule)
         fetchAllSchedules()
     }
     
     func addSchedule(_ schedule: Schedule) {
-        schedulesRepository.addSchedule(schedule)
+        schedulesRepository.addModel(model: schedule)
         fetchAllSchedules()
     }
     
     func deleteSchedule(_ schedule: Schedule) {
-        schedulesRepository.deleteSchedule(schedule)
+        schedulesRepository.removeModel(model: schedule)
         fetchAllSchedules()
     }
 }

@@ -9,15 +9,15 @@ import Foundation
 
 final class ProfessorsViewModel: ObservableObject {
     @Published var state: ProfessorsState = .init()
-    private let professorsRepository: ProfessorsRepositing
-    private let disciplinesRepository: DisciplinesRepositing
-    private let schedulesRepository: SchedulesRepositing
+    private let professorsRepository: any ProfessorsRepositing
+    private let disciplinesRepository: any DisciplinesRepositing
+    private let schedulesRepository: any SchedulesRepositing
     let admin: Admin
     
     init(
-        professorsRepository: ProfessorsRepositing,
-        disciplinesRepository: DisciplinesRepositing,
-        schedulesRepository: SchedulesRepositing,
+        professorsRepository: any ProfessorsRepositing,
+        disciplinesRepository: any DisciplinesRepositing,
+        schedulesRepository: any SchedulesRepositing,
         admin: Admin
     ) {
         self.professorsRepository = professorsRepository
@@ -30,31 +30,31 @@ final class ProfessorsViewModel: ObservableObject {
 
 extension ProfessorsViewModel {
     private func fetchProfessors() {
-        state.professors = professorsRepository.fetchProfessors()
+        state.professors = professorsRepository.getAll()
     }
     
     func getDisciplines() -> [Discipline] {
-        return disciplinesRepository.fetchDisciplines()
+        return disciplinesRepository.getAll()
     }
     
     func getSchedules() -> [Schedule] {
-        return schedulesRepository.fetchSchedules()
+        return schedulesRepository.getAll()
     }
 }
 
 extension ProfessorsViewModel {
     func updateProfessor(_ professor: Professor) {
-        professorsRepository.updateProfessor(professor)
+        professorsRepository.updateModel(model: professor)
         fetchProfessors()
     }
     
     func addProfessor(_ professor: Professor) {
-        professorsRepository.addProfessor(professor)
+        professorsRepository.addModel(model: professor)
         fetchProfessors()
     }
     
     func deleteProfessor(_ professor: Professor) {
-        professorsRepository.deleteProfessor(professor)
+        professorsRepository.removeModel(model: professor)
         fetchProfessors()
     }
 }

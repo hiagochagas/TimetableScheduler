@@ -9,10 +9,10 @@ import Foundation
 
 final class DisciplinesViewModel: ObservableObject {
     @Published var state: DisciplinesState = .init()
-    private let disciplinesRepository: DisciplinesRepositing
+    private let disciplinesRepository: any DisciplinesRepositing
     let admin: Admin
     
-    init(disciplinesRepository: DisciplinesRepositing, admin: Admin) {
+    init(disciplinesRepository: any DisciplinesRepositing, admin: Admin) {
         self.disciplinesRepository = disciplinesRepository
         self.admin = admin
         fetchAllDisciplines()
@@ -21,23 +21,23 @@ final class DisciplinesViewModel: ObservableObject {
 
 extension DisciplinesViewModel {
     private func fetchAllDisciplines() {
-        state.disciplines = disciplinesRepository.fetchDisciplines()
+        state.disciplines = disciplinesRepository.getAll()
     }
 }
 
 extension DisciplinesViewModel {
     func updateDiscipline(_ discipline: Discipline) {
-        disciplinesRepository.updateDiscipline(discipline)
+        disciplinesRepository.updateModel(model: discipline)
         fetchAllDisciplines()
     }
     
     func addDiscipline(_ discipline: Discipline) {
-        disciplinesRepository.addDiscipline(discipline)
+        disciplinesRepository.addModel(model: discipline)
         fetchAllDisciplines()
     }
     
     func deleteDiscipline(_ discipline: Discipline) {
-        disciplinesRepository.deleteDiscipline(discipline)
+        disciplinesRepository.removeModel(model: discipline)
         fetchAllDisciplines()
     }
 }

@@ -8,16 +8,16 @@
 import Foundation
 
 final class TimetableViewModel: ObservableObject {
-    private let timetableRepository: TimetableRepositing
-    private let professorsRepository: ProfessorsRepositing
-    private let schedulesRepository: SchedulesRepositing
+    private let timetableRepository: any TimetableRepositing
+    private let professorsRepository: any ProfessorsRepositing
+    private let schedulesRepository: any SchedulesRepositing
     @Published var state: TimetableState = .init()
     var admin: Admin
     
     init(
-        timetableRepository: TimetableRepositing,
-        professorsRepository: ProfessorsRepositing,
-        schedulesRepository: SchedulesRepositing,
+        timetableRepository: any TimetableRepositing,
+        professorsRepository: any ProfessorsRepositing,
+        schedulesRepository: any SchedulesRepositing,
         admin: Admin
     ) {
         self.timetableRepository = timetableRepository
@@ -30,7 +30,7 @@ final class TimetableViewModel: ObservableObject {
 
 extension TimetableViewModel {
     private func getAllTimetables() -> [Cell<Timetable>]{
-        return timetableRepository.getTimetables().compactMap { timetable in
+        return timetableRepository.getAll().compactMap { timetable in
             Cell(object: timetable)
         }
     }
@@ -116,8 +116,8 @@ extension TimetableViewModel {
     }
     
     private func allocateTimetables() -> [Timetable] {
-        let schedules = schedulesRepository.fetchSchedules()
-        let professors = professorsRepository.fetchProfessors()
+        let schedules = schedulesRepository.getAll()
+        let professors = professorsRepository.getAll()
         let timetables = createTimetables(professors: professors)
         let graph = createGraph(timetables: timetables)
         return nandalAlgorithm(graph: graph, timetables: timetables, schedules: schedules)
@@ -130,7 +130,9 @@ extension TimetableViewModel {
     }
     
     func resetTimetable() {
-        timetableRepository.saveTimetables(allocateTimetables())
+        let timetables = allocateTimetables()
+        timetableRepository.deleteAllTimetables()
+        timetables.forEach { timetableRepository.addModel(model: $0) }
         state.timetables = getAllTimetables()
     }
 }

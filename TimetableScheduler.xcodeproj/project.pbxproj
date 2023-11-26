@@ -46,6 +46,8 @@
 		855BDC972ACA34C9002181C7 /* DisciplineDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855BDC962ACA34C9002181C7 /* DisciplineDetailSheet.swift */; };
 		8569C29E2B12365300C2F700 /* MultiSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8569C29D2B12365300C2F700 /* MultiSelectionView.swift */; };
 		8569C2A02B123A3500C2F700 /* MultiSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8569C29F2B123A3500C2F700 /* MultiSelector.swift */; };
+		8569C2A22B13B03700C2F700 /* CommonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8569C2A12B13B03700C2F700 /* CommonRepository.swift */; };
+		8569C2A52B13B16100C2F700 /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8569C2A42B13B16100C2F700 /* RepositoryFactory.swift */; };
 		85A578522AC6F284007E549A /* TimetableDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578512AC6F284007E549A /* TimetableDetailCell.swift */; };
 		85A578542AC6FA3D007E549A /* TimetableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578532AC6FA3D007E549A /* TimetableViewModel.swift */; };
 		85A578562AC6FC4F007E549A /* TimetableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A578552AC6FC4F007E549A /* TimetableState.swift */; };
@@ -100,6 +102,8 @@
 		855BDC962ACA34C9002181C7 /* DisciplineDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineDetailSheet.swift; sourceTree = "<group>"; };
 		8569C29D2B12365300C2F700 /* MultiSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelectionView.swift; sourceTree = "<group>"; };
 		8569C29F2B123A3500C2F700 /* MultiSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSelector.swift; sourceTree = "<group>"; };
+		8569C2A12B13B03700C2F700 /* CommonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonRepository.swift; sourceTree = "<group>"; };
+		8569C2A42B13B16100C2F700 /* RepositoryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryFactory.swift; sourceTree = "<group>"; };
 		85A578512AC6F284007E549A /* TimetableDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDetailCell.swift; sourceTree = "<group>"; };
 		85A578532AC6FA3D007E549A /* TimetableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableViewModel.swift; sourceTree = "<group>"; };
 		85A578552AC6FC4F007E549A /* TimetableState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableState.swift; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 		853B44F12AC4DB3100CF0B13 /* TimetableScheduler */ = {
 			isa = PBXGroup;
 			children = (
+				8569C2A32B13B15700C2F700 /* Factory */,
 				852D37E72ACF2822001136B8 /* Info.plist */,
 				852D37C72ACE04F1001136B8 /* SignIn */,
 				852D37C02ACDFD9A001136B8 /* Coordinators */,
@@ -274,6 +279,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		8569C2A32B13B15700C2F700 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				8569C2A42B13B16100C2F700 /* RepositoryFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		85A578612AC70FEF007E549A /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +295,7 @@
 				855BDC822AC8567C002181C7 /* SchedulesRepository.swift */,
 				855BDC8A2AC85E3B002181C7 /* DisciplinesRepository.swift */,
 				852D37BC2ACDF949001136B8 /* AdminRepository.swift */,
+				8569C2A12B13B03700C2F700 /* CommonRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -403,6 +417,7 @@
 				853B45022AC4E1D300CF0B13 /* TabBarView.swift in Sources */,
 				855BDC892AC85DBB002181C7 /* DisciplinesViewModel.swift in Sources */,
 				85A578582AC6FCEB007E549A /* Timetable.swift in Sources */,
+				8569C2A52B13B16100C2F700 /* RepositoryFactory.swift in Sources */,
 				852D37BF2ACDF9AA001136B8 /* Admin.swift in Sources */,
 				852D37C22ACDFDAA001136B8 /* AppCoordinatorView.swift in Sources */,
 				855BDC832AC8567C002181C7 /* SchedulesRepository.swift in Sources */,
@@ -418,6 +433,7 @@
 				855BDC912AC86A5C002181C7 /* Tab.swift in Sources */,
 				85A578522AC6F284007E549A /* TimetableDetailCell.swift in Sources */,
 				853B45112AC4F01200CF0B13 /* Weekdays.swift in Sources */,
+				8569C2A22B13B03700C2F700 /* CommonRepository.swift in Sources */,
 				855BDC7D2AC85086002181C7 /* ProfessorDetailCell.swift in Sources */,
 				85A5785A2AC70B46007E549A /* Discipline.swift in Sources */,
 				852D37C92ACE0501001136B8 /* SignUpView.swift in Sources */,

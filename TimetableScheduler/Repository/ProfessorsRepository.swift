@@ -8,12 +8,7 @@
 import Foundation
 import SwiftData
 
-protocol ProfessorsRepositing {
-    func fetchProfessors() -> [Professor]
-    func addProfessor(_ professor: Professor)
-    func deleteProfessor(_ professor: Professor)
-    func updateProfessor(_ professor: Professor)
-}
+protocol ProfessorsRepositing: CommonRepository where T == Professor { }
 
 final class ProfessorsRepository {
     private let context: ModelContext
@@ -26,24 +21,24 @@ final class ProfessorsRepository {
 }
 
 extension ProfessorsRepository: ProfessorsRepositing {
-    func fetchProfessors() -> [Professor] {
+    func getAll() -> [Professor] {
         let description = FetchDescriptor<Professor>()
         let result = (try? context.fetch(description)) ?? []
         return result.filter { $0.admin?.email == loggedAdmin.email }
     }
     
-    func addProfessor(_ professor: Professor) {
-        professor.admin = loggedAdmin
-        context.insert(professor)
+    func addModel(model: Professor) {
+        model.admin = loggedAdmin
+        context.insert(model)
         saveContext()
     }
     
-    func deleteProfessor(_ professor: Professor) {
-        context.delete(professor)
+    func removeModel(model: Professor) {
+        context.delete(model)
         saveContext()
     }
     
-    func updateProfessor(_ professor: Professor) {
+    func updateModel(model: Professor) {
         saveContext()
     }
     

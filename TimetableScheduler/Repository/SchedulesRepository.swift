@@ -8,12 +8,7 @@
 import Foundation
 import SwiftData
 
-protocol SchedulesRepositing {
-    func fetchSchedules() -> [Schedule]
-    func addSchedule(_ schedule: Schedule)
-    func deleteSchedule(_ schedule: Schedule)
-    func updateSchedule(_ schedule: Schedule)
-}
+protocol SchedulesRepositing: CommonRepository where T == Schedule { }
 
 final class SchedulesRepository {
     private let context: ModelContext
@@ -26,24 +21,24 @@ final class SchedulesRepository {
 }
 
 extension SchedulesRepository: SchedulesRepositing {
-    func fetchSchedules() -> [Schedule] {
+    func getAll() -> [Schedule] {
         let description = FetchDescriptor<Schedule>()
         let result = (try? context.fetch(description)) ?? []
         return result.filter { $0.admin?.email == loggedAdmin.email }
     }
     
-    func addSchedule(_ schedule: Schedule) {
-        schedule.admin = loggedAdmin
-        context.insert(schedule)
+    func addModel(model: Schedule) {
+        model.admin = loggedAdmin
+        context.insert(model)
         saveContext()
     }
     
-    func deleteSchedule(_ schedule: Schedule) {
-        context.delete(schedule)
+    func removeModel(model: Schedule) {
+        context.delete(model)
         saveContext()
     }
     
-    func updateSchedule(_ schedule: Schedule) {
+    func updateModel(model: Schedule) {
         saveContext()
     }
     

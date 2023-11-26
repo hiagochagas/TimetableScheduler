@@ -36,7 +36,7 @@ struct AppCoordinatorView: View {
     }
     
     private func tabBarView(with admin: Admin) -> some View {
-        TabBarView(admin: admin)
+        TabBarView(modelContext: modelContext, admin: admin)
     }
 }
 

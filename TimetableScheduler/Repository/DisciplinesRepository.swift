@@ -8,12 +8,7 @@
 import Foundation
 import SwiftData
 
-protocol DisciplinesRepositing {
-    func fetchDisciplines() -> [Discipline]
-    func addDiscipline(_ discipline: Discipline)
-    func deleteDiscipline(_ discipline: Discipline)
-    func updateDiscipline(_ discipline: Discipline)
-}
+protocol DisciplinesRepositing: CommonRepository where T == Discipline { }
 
 final class DisciplinesRepository {
     private let context: ModelContext
@@ -26,24 +21,24 @@ final class DisciplinesRepository {
 }
 
 extension DisciplinesRepository: DisciplinesRepositing {
-    func fetchDisciplines() -> [Discipline] {
+    func getAll() -> [Discipline] {
         let description = FetchDescriptor<Discipline>()
         let result = (try? context.fetch(description)) ?? []
         return result.filter { $0.admin?.email == loggedAdmin.email }
     }
     
-    func addDiscipline(_ discipline: Discipline) {
-        discipline.admin = loggedAdmin
-        context.insert(discipline)
+    func addModel(model: Discipline) {
+        model.admin = loggedAdmin
+        context.insert(model)
         saveContext()
     }
     
-    func deleteDiscipline(_ discipline: Discipline) {
-        context.delete(discipline)
+    func removeModel(model: Discipline) {
+        context.delete(model)
         saveContext()
     }
     
-    func updateDiscipline(_ discipline: Discipline) {
+    func updateModel(model: Discipline) {
         saveContext()
     }
     

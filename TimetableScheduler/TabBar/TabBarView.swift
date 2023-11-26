@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct TabBarView: View {
-    @Environment(\.modelContext) private var modelContext
     @State private var tabSelected: Tab = .timetable
     private let admin: Admin
+    private let repositoryFactory: RepositoryFactory
     
-    init(admin: Admin) {
+    init(modelContext: ModelContext, admin: Admin) {
         self.admin = admin
+        self.repositoryFactory = .init(modelContext: modelContext, loggedAdmin: admin)
         UITabBar.appearance().isHidden = true
     }
     
@@ -48,17 +50,9 @@ struct TabBarView: View {
     private var timetableView: some View {
         TimetableView(
             viewModel: TimetableViewModel(
-                timetableRepository: TimetableRepository(
-                    context: modelContext,
-                    loggedAdmin: admin
-                ),
-                professorsRepository: ProfessorsRepository(
-                    context: modelContext,
-                    loggedAdmin: admin
-                ),
-                schedulesRepository: SchedulesRepository(
-                    context: modelContext,
-                    loggedAdmin: admin),
+                timetableRepository: repositoryFactory.getRepository(for: .timetable) as! (any TimetableRepositing),
+                professorsRepository: repositoryFactory.getRepository(for: .professor) as! any ProfessorsRepositing,
+                schedulesRepository: repositoryFactory.getRepository(for: .schedule) as! any SchedulesRepositing,
                 admin: admin
             )
         )
@@ -67,18 +61,9 @@ struct TabBarView: View {
     private var professorsView: some View {
         ProfessorsView(
             viewModel: ProfessorsViewModel(
-                professorsRepository: ProfessorsRepository(
-                    context: modelContext,
-                    loggedAdmin: admin
-                ),
-                disciplinesRepository: DisciplinesRepository(
-                    context: modelContext,
-                    loggedAdmin: admin
-                ),
-                schedulesRepository: SchedulesRepository(
-                    context: modelContext,
-                    loggedAdmin: admin
-                ),
+                professorsRepository: repositoryFactory.getRepository(for: .professor) as! (any ProfessorsRepositing),
+                disciplinesRepository: repositoryFactory.getRepository(for: .discipline) as! (any DisciplinesRepositing),
+                schedulesRepository: repositoryFactory.getRepository(for: .schedule) as! (any SchedulesRepositing),
                 admin: admin
             )
         )
@@ -87,9 +72,7 @@ struct TabBarView: View {
     private var schedulesView: some View {
         SchedulesView(
             viewModel: SchedulesViewModel(
-                schedulesRepository: SchedulesRepository(
-                    context: modelContext,
-                    loggedAdmin: admin),
+                schedulesRepository: repositoryFactory.getRepository(for: .schedule) as! (any SchedulesRepositing),
                 admin: admin
             )
         )
@@ -98,10 +81,7 @@ struct TabBarView: View {
     private var disciplinesView: some View {
         DisciplinesView(
             viewModel: DisciplinesViewModel(
-                disciplinesRepository: DisciplinesRepository(
-                    context: modelContext,
-                    loggedAdmin: admin
-                ),
+                disciplinesRepository: repositoryFactory.getRepository(for: .discipline) as! (any DisciplinesRepositing),
                 admin: admin
             )
         )

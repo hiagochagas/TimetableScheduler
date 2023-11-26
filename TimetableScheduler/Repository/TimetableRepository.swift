@@ -8,9 +8,8 @@
 import Foundation
 import SwiftData
 
-protocol TimetableRepositing {
-    func getTimetables() -> [Timetable]
-    func saveTimetables(_ timetables: [Timetable])
+protocol TimetableRepositing: CommonRepository where T == Timetable {
+    func deleteAllTimetables()
 }
 
 final class TimetableRepository {
@@ -24,23 +23,29 @@ final class TimetableRepository {
 }
 
 extension TimetableRepository: TimetableRepositing {
-    func getTimetables() -> [Timetable] {
+    func getAll() -> [Timetable] {
         let description = FetchDescriptor<Timetable>()
         let result = (try? context.fetch(description)) ?? []
         return result.filter { $0.admin?.email == loggedAdmin.email }
     }
     
-    func saveTimetables(_ timetables: [Timetable]) {
-        deleteAllTimetables()
-        timetables.forEach {
-            $0.admin = loggedAdmin
-            context.insert($0)
-        }
+    func addModel(model: Timetable) {
+        model.admin = loggedAdmin
+        context.insert(model)
         saveContext()
     }
     
-    private func deleteAllTimetables() {
-        let timetables = getTimetables()
+    func removeModel(model: Timetable) {
+        context.delete(model)
+        saveContext()
+    }
+    
+    func updateModel(model: Timetable) { 
+        saveContext()
+    }
+    
+    func deleteAllTimetables() {
+        let timetables = getAll()
         timetables.forEach { context.delete($0) }
         saveContext()
     }
