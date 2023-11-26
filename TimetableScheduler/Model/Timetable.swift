@@ -6,16 +6,25 @@
 //
 
 import Foundation
+import SwiftData
 
-class Timetable: Equatable {
-    let discipline: Discipline
-    let professor: Professor
+@Model
+final class Timetable: Equatable {
+    @Relationship
+    var discipline: Discipline?
+    @Relationship
+    var professor: Professor?
+    @Relationship
     var schedule: Schedule?
     
-    init(discipline: Discipline, professor: Professor, schedule: Schedule? = nil) {
+    @Relationship(inverse: \Admin.timetables)
+    var admin: Admin?
+    
+    init(discipline: Discipline, professor: Professor, schedule: Schedule? = nil, admin: Admin? = nil) {
         self.discipline = discipline
         self.professor = professor
         self.schedule = schedule
+        self.admin = admin
     }
     
     static func == (lhs: Timetable, rhs: Timetable) -> Bool {

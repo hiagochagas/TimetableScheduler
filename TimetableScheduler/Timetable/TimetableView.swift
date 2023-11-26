@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct TimetableView: View {
-    private let viewModel: TimetableViewModeling
+    @ObservedObject private var viewModel: TimetableViewModel
     
-    init(viewModel: TimetableViewModeling) {
+    init(viewModel: TimetableViewModel) {
         self.viewModel = viewModel
     }
     
@@ -48,7 +48,8 @@ extension TimetableView {
         ForEach(viewModel.getTimetables(for: weekday)) { cell in
             let timetable = cell.object
             TimetableDetailCell(
-                disciplineName: timetable.discipline.name,
+                disciplineName: timetable.discipline?.name ?? "",
+                professorName: timetable.professor?.name ?? "",
                 startTime: timetable.schedule?.startTime ?? "",
                 endTime: timetable.schedule?.endTime ?? ""
             )

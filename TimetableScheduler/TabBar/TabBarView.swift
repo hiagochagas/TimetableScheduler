@@ -48,7 +48,10 @@ struct TabBarView: View {
     private var timetableView: some View {
         TimetableView(
             viewModel: TimetableViewModel(
-                timetableRepository: TimetableRepository(),
+                timetableRepository: TimetableRepository(
+                    context: modelContext,
+                    loggedAdmin: admin
+                ),
                 professorsRepository: ProfessorsRepository(
                     context: modelContext,
                     loggedAdmin: admin

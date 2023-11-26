@@ -13,12 +13,14 @@ class Admin {
     @Attribute(.unique) let email: String
     let name: String
     let password: String
-    @Relationship
+    @Relationship(deleteRule: .nullify)
     var professors: [Professor] = []
-    @Relationship
+    @Relationship(deleteRule: .nullify)
     var schedules: [Schedule] = []
-    @Relationship
+    @Relationship(deleteRule: .nullify)
     var disciplines: [Discipline] = []
+    @Relationship(deleteRule: .nullify)
+    var timetables: [Timetable] = []
     
     init(name: String, email: String, password: String) {
         self.name = name

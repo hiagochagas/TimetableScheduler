@@ -7,13 +7,7 @@
 
 import Foundation
 
-protocol TimetableViewModeling {
-    var admin: Admin { get }
-    func getTimetables(for weekday: Weekdays) -> [Cell<Timetable>]
-    func resetTimetable()
-}
-
-final class TimetableViewModel {
+final class TimetableViewModel: ObservableObject {
     private let timetableRepository: TimetableRepositing
     private let professorsRepository: ProfessorsRepositing
     private let schedulesRepository: SchedulesRepositing
@@ -60,7 +54,7 @@ extension TimetableViewModel {
                 if i == j || i > j {
                     continue
                 }
-                if t1.professor == t2.professor || t1.discipline.name == t2.discipline.name || t1.discipline.semester == t2.discipline.semester {
+                if t1 == t2 {
                     graph[i][j] = 1
                     graph[j][i] = 1
                 }
@@ -88,7 +82,7 @@ extension TimetableViewModel {
                 adjacentSchedules.insert(schedule)
             }
         }
-        for preferredSchedule in timetable.professor.preferredSchedules {
+        for preferredSchedule in timetable.professor?.preferredSchedules ?? [] {
             if !adjacentSchedules.contains(preferredSchedule) {
                 timetable.schedule = preferredSchedule
                 break
@@ -130,7 +124,7 @@ extension TimetableViewModel {
     }
 }
 
-extension TimetableViewModel: TimetableViewModeling {
+extension TimetableViewModel {
     func getTimetables(for weekday: Weekdays) -> [Cell<Timetable>] {
         state.timetables.filter { $0.object.schedule?.dayOfTheWeek == weekday }
     }

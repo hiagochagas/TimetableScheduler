@@ -9,15 +9,18 @@ import SwiftUI
 
 struct TimetableDetailCell: View {
     private let disciplineName: String
+    private let professorName: String
     private let startTime: String
     private let endTime: String
     
     init(
         disciplineName: String,
+        professorName: String,
         startTime: String,
         endTime: String
     ) {
         self.disciplineName = disciplineName
+        self.professorName = professorName
         self.startTime = startTime
         self.endTime = endTime
     }
@@ -27,6 +30,7 @@ struct TimetableDetailCell: View {
             backgroundShadow
             VStack(spacing: 8) {
                 disciplineLabel
+                professorLabel
                 timeLabel
             }
             .padding(.all, 16)
@@ -44,6 +48,13 @@ struct TimetableDetailCell: View {
     private var disciplineLabel: some View {
         HStack {
             Text(disciplineName)
+            Spacer()
+        }
+    }
+    
+    private var professorLabel: some View {
+        HStack {
+            Text("Prof. \(professorName)")
             Spacer()
         }
     }
